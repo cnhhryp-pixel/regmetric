@@ -1,29 +1,45 @@
 export default function Home() {
   return (
     <main>
-      <section style={{padding:'80px 20px', textAlign:'center'}}>
-        <h1>RegMetric</h1>
-        <h2>Regulatory Intelligence Platform</h2>
-        <p>
-          Analyze compliance risks, discover applicable regulations,
-          and generate actionable reports.
-        </p>
-        <button>Start Free Assessment</button>
+      <section className="hero">
+        <div className="container">
+          <h1>RegMetric</h1>
+          <h2>AI-Powered Regulatory Intelligence Platform</h2>
+          <p>
+            Identify compliance risks, discover applicable regulations,
+            and generate professional compliance reports.
+          </p>
+          <div style={{marginTop: '32px'}}>
+            <button>Start Free Assessment</button>
+            <button style={{marginLeft:'12px'}}>Explore Regulations</button>
+          </div>
+        </div>
       </section>
 
-      <section style={{padding:'40px 20px'}}>
-        <h2>Core Tools</h2>
-        <div>
-          <h3>Product Compliance Checker</h3>
-          <p>Check which regulations apply to your products.</p>
+      <section className="container">
+        <div className="card" style={{marginBottom:'30px'}}>
+          <h2>Compliance Overview</h2>
+          <p>Risk Score: <strong>72 / 100</strong></p>
+          <p>Applicable Regulations: <strong>8</strong></p>
+          <p>Required Actions: <strong>5</strong></p>
         </div>
-        <div>
-          <h3>Regulation Database</h3>
-          <p>Explore EU regulations and compliance requirements.</p>
-        </div>
-        <div>
-          <h3>Compliance Reports</h3>
-          <p>Generate professional compliance assessment reports.</p>
+      </section>
+
+      <section className="container">
+        <h2>Core Compliance Tools</h2>
+        <div className="card-grid">
+          <div className="card">
+            <h3>Product Compliance Checker</h3>
+            <p>Analyze product requirements and identify relevant regulations.</p>
+          </div>
+          <div className="card">
+            <h3>EU Regulation Database</h3>
+            <p>Explore EU regulations and compliance requirements.</p>
+          </div>
+          <div className="card">
+            <h3>Compliance Reports</h3>
+            <p>Generate professional compliance assessment reports.</p>
+          </div>
         </div>
       </section>
     </main>
