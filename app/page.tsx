@@ -1,15 +1,18 @@
 export default function Home() {
   return (
     <main>
+      <header className="container" style={{paddingTop:'24px'}}>
+        <h2>RegMetric</h2>
+      </header>
+
       <section className="hero">
         <div className="container">
-          <h1>RegMetric</h1>
-          <h2>AI-Powered Regulatory Intelligence Platform</h2>
+          <h1>AI-Powered Regulatory Intelligence Platform</h1>
           <p>
-            Identify compliance risks, discover applicable regulations,
-            and generate professional compliance reports.
+            Identify EU compliance requirements, discover applicable regulations,
+            and create professional compliance reports for your products.
           </p>
-          <div style={{marginTop: '32px'}}>
+          <div style={{marginTop:'32px'}}>
             <button>Start Free Assessment</button>
             <button style={{marginLeft:'12px'}}>Explore Regulations</button>
           </div>
@@ -17,28 +20,39 @@ export default function Home() {
       </section>
 
       <section className="container">
-        <div className="card" style={{marginBottom:'30px'}}>
-          <h2>Compliance Overview</h2>
-          <p>Risk Score: <strong>72 / 100</strong></p>
-          <p>Applicable Regulations: <strong>8</strong></p>
-          <p>Required Actions: <strong>5</strong></p>
+        <div className="card-grid">
+          <div className="card">
+            <h3>Compliance Risk Score</h3>
+            <p><strong>72 / 100</strong></p>
+            <p>Current compliance exposure analysis</p>
+          </div>
+          <div className="card">
+            <h3>Applicable Regulations</h3>
+            <p><strong>8</strong></p>
+            <p>Relevant EU requirements identified</p>
+          </div>
+          <div className="card">
+            <h3>Required Actions</h3>
+            <p><strong>5</strong></p>
+            <p>Recommended compliance steps</p>
+          </div>
         </div>
       </section>
 
-      <section className="container">
+      <section className="container" style={{paddingBottom:'80px'}}>
         <h2>Core Compliance Tools</h2>
         <div className="card-grid">
           <div className="card">
             <h3>Product Compliance Checker</h3>
-            <p>Analyze product requirements and identify relevant regulations.</p>
+            <p>Check which EU regulations apply to your products before entering the market.</p>
           </div>
           <div className="card">
             <h3>EU Regulation Database</h3>
-            <p>Explore EU regulations and compliance requirements.</p>
+            <p>Search compliance requirements, standards and regulatory information.</p>
           </div>
           <div className="card">
             <h3>Compliance Reports</h3>
-            <p>Generate professional compliance assessment reports.</p>
+            <p>Create structured assessment reports for suppliers and business teams.</p>
           </div>
         </div>
       </section>
