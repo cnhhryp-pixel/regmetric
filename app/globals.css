@@ -57,14 +57,65 @@ a {
 
 .hero {
   padding: 100px 24px;
-  text-align: center;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.eyebrow {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  line-height: 1.1;
+  margin: 0 0 24px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: 24px;
+  padding: 36px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 50px rgba(15,23,42,.08);
+}
+
+.score {
+  font-size: 64px;
+  font-weight: 800;
+  margin-top: 24px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tags span {
+  background: #f1f5f9;
+  padding: 8px 14px;
+  border-radius: 999px;
 }
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  padding: 40px 24px;
+  padding: 40px 0;
 }
 
 .card {
@@ -72,12 +123,25 @@ a {
   border-radius: 18px;
   padding: 32px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 30px rgba(15,23,42,.06);
+  box-shadow: 0 10px 30px rgba(15,23,2,.06);
+}
+
+.trust-section {
+  padding: 80px 24px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
   .nav-links {
     display: none;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 36px;
   }
 
   .card-grid {
