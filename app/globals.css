@@ -20,8 +20,43 @@ a {
   padding: 0 24px;
 }
 
+.site-header {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.header-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+}
+
+.header-cta {
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #0f172a;
+  color: white;
+  font-size: 14px;
+}
+
 .hero {
-  padding: 90px 24px;
+  padding: 100px 24px;
   text-align: center;
 }
 
@@ -34,12 +69,17 @@ a {
 
 .card {
   background: white;
-  border-radius: 16px;
-  padding: 28px;
+  border-radius: 18px;
+  padding: 32px;
   border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15,23,42,.06);
 }
 
 @media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
   .card-grid {
     grid-template-columns: 1fr;
   }
