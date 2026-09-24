@@ -1,25 +1,34 @@
-export default function Industries() {
-  const industries = [
-    'Electronics',
-    'Machinery',
-    'Toys & Children Products',
-    'Medical Devices',
-    'Consumer Products',
-    'Automotive'
-  ];
+export const metadata = {
+  title: 'Industries | RegMetric Compliance Intelligence',
+  description: 'Explore product compliance requirements across electronics, toys, machinery, automotive and consumer products.',
+};
 
+const industries = [
+  ['Electronics', 'Compliance intelligence for connected devices, electronics and electrical products.'],
+  ['Toys', 'Understand safety and regulatory requirements for toys entering global markets.'],
+  ['Machinery', 'Identify compliance considerations for industrial equipment and machinery.'],
+  ['Automotive', 'Support automotive suppliers with regulatory information and risk assessment.'],
+  ['Medical Devices', 'Organize compliance requirements for healthcare-related products.'],
+  ['Consumer Products', 'Manage product compliance information for everyday consumer goods.'],
+];
+
+export default function IndustriesPage() {
   return (
-    <main className="container" style={{padding:'80px 24px'}}>
-      <h1>Industries</h1>
-      <p>Explore regulatory intelligence solutions for different product categories and markets.</p>
-      <div className="card-grid">
-        {industries.map((item) => (
-          <div className="card" key={item}>
-            <h3>{item}</h3>
-            <p>Discover applicable compliance requirements and regulatory considerations.</p>
+    <main className="container">
+      <section className="hero">
+        <p className="eyebrow">Industries</p>
+        <h1>Compliance Intelligence Across Global Industries</h1>
+        <p>RegMetric helps companies identify regulatory requirements before launching products in international markets.</p>
+      </section>
+
+      <section className="card-grid">
+        {industries.map(([name, text]) => (
+          <div className="card" key={name}>
+            <h2>{name}</h2>
+            <p>{text}</p>
           </div>
         ))}
-      </div>
+      </section>
     </main>
   );
 }
