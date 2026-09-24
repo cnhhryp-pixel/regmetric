@@ -1,4 +1,4 @@
-import { industries } from '@/data/complianceData';
+import { industries } from '../../../data/complianceData';
 
 export function generateStaticParams() {
   return industries.map((industry) => ({
