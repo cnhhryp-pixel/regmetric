@@ -1,6 +1,6 @@
 import './globals.css';
-import Header from '@/components/Header';
-import SiteFooter from '@/components/SiteFooter';
+import Header from '../components/Header';
+import SiteFooter from '../components/SiteFooter';
 
 export const metadata = {
   title: 'RegMetric - Regulatory Intelligence Platform',
