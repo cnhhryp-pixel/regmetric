@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://regmetric.com/sitemap.xml
