@@ -29,8 +29,9 @@ export function generateStaticParams() {
   return Object.keys(regulations).map((slug) => ({ slug }));
 }
 
-export default function RegulationDetail({ params }: { params: { slug: string } }) {
-  const regulation = regulations[params.slug];
+export default async function RegulationDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const regulation = regulations[slug];
 
   if (!regulation) {
     return <main className="container"><h1>Regulation Not Found</h1></main>;
