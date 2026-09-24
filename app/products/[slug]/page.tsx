@@ -25,8 +25,9 @@ export function generateStaticParams() {
   return Object.keys(products).map((slug) => ({ slug }));
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = products[params.slug];
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = products[slug];
 
   if (!product) {
     return <main className="container"><h1>Product Not Found</h1></main>;
