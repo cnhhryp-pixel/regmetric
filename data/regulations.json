@@ -1,0 +1,27 @@
+[
+  {
+    "name": "CBAM",
+    "category": "Climate Regulation",
+    "market": "European Union"
+  },
+  {
+    "name": "Digital Product Passport",
+    "category": "Product Compliance",
+    "market": "European Union"
+  },
+  {
+    "name": "AI Act",
+    "category": "Artificial Intelligence",
+    "market": "European Union"
+  },
+  {
+    "name": "GPSR",
+    "category": "Product Safety",
+    "market": "European Union"
+  },
+  {
+    "name": "Battery Regulation",
+    "category": "Battery Compliance",
+    "market": "European Union"
+  }
+]
