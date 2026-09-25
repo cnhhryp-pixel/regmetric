@@ -137,6 +137,24 @@ export default function Home() {
       <section className="section container">
         <div className="section-heading">
           <div>
+            <span className="eyebrow">Popular product searches</span>
+            <h2>Start with the product, not the regulation name.</h2>
+          </div>
+          <a className="text-link" href="/products">View all product guides →</a>
+        </div>
+        <div className="industry-links">
+          <a href="/products/bluetooth-speaker">Bluetooth Speaker <span>→</span></a>
+          <a href="/products/power-adapter">Power Adapter <span>→</span></a>
+          <a href="/products/led-light">LED Light <span>→</span></a>
+          <a href="/products/battery-powered-device">Battery-Powered Device <span>→</span></a>
+          <a href="/products/electronic-toy">Electronic Toy <span>→</span></a>
+          <a href="/products">All Product Guides <span>→</span></a>
+        </div>
+      </section>
+
+      <section className="section container">
+        <div className="section-heading">
+          <div>
             <span className="eyebrow">More EU compliance areas</span>
             <h2>Research beyond the first four regulations.</h2>
           </div>
@@ -148,6 +166,7 @@ export default function Home() {
           <a href="/regulations/weee">WEEE <span>→</span></a>
           <a href="/regulations/batteries">Batteries Regulation <span>→</span></a>
           <a href="/regulations/machinery-regulation">Machinery Regulation <span>→</span></a>
+          <a href="/regulations/red">Radio Equipment Directive <span>→</span></a>
           <a href="/regulations">All Regulations <span>→</span></a>
         </div>
       </section>
