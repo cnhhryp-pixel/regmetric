@@ -19,6 +19,7 @@ export default function CEMarkingPage() {
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }, { name: 'CE Marking', path: '/regulations/ce-marking' }]} />
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }, { name: 'CE Marking', path: '/regulations/ce-marking' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">EU Market Access</span>
