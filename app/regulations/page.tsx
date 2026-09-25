@@ -1,6 +1,9 @@
+import { BreadcrumbSchema } from '../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU Regulations Database | RegMetric',
+  title: 'EU Regulations Database',
   description: 'Explore European product compliance regulations including GPSR, CE marking, RoHS, REACH, EMC and LVD requirements.',
+  alternates: { canonical: '/regulations' },
 };
 
 const regulations = [
@@ -46,6 +49,7 @@ const upcoming = [
 export default function Regulations() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">EU Regulation Database</span>
