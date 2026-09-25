@@ -185,6 +185,24 @@ const items: SearchItem[] = [
     priority: 10
   },
   {
+    title: 'Smart Plug EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for Wi-Fi, Bluetooth and Zigbee smart plugs.',
+    href: '/products/smart-plug',
+    keywords: ['smart plug', 'wifi plug', 'connected socket', 'zigbee plug'],
+    aliases: ['smart plug compliance'],
+    priority: 10
+  },
+  {
+    title: 'Wi-Fi Camera EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for Wi-Fi and connected security cameras.',
+    href: '/products/wifi-camera',
+    keywords: ['wifi camera', 'wi-fi camera', 'security camera', 'ip camera', 'connected camera'],
+    aliases: ['wifi camera compliance', 'security camera compliance'],
+    priority: 10
+  },
+  {
     title: 'Power Adapter EU Compliance',
     type: 'Product Guide',
     description: 'EU compliance research for external power supplies, chargers and power adapters.',
@@ -257,6 +275,42 @@ const items: SearchItem[] = [
     priority: 9
   },
   {
+    title: 'Portable Fan EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for USB, rechargeable and connected portable fans.',
+    href: '/products/portable-fan',
+    keywords: ['portable fan', 'usb fan', 'rechargeable fan', 'desk fan'],
+    aliases: ['portable fan compliance'],
+    priority: 9
+  },
+  {
+    title: 'Hair Dryer EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for hair dryers and personal-care electrical appliances.',
+    href: '/products/hair-dryer',
+    keywords: ['hair dryer', 'hairdryer', 'blow dryer', 'personal care appliance'],
+    aliases: ['hair dryer compliance'],
+    priority: 9
+  },
+  {
+    title: 'Kitchen Appliance EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for small kitchen appliances with heating, motors or food-contact materials.',
+    href: '/products/kitchen-appliance',
+    keywords: ['kitchen appliance', 'small appliance', 'blender', 'kettle', 'coffee machine', 'air fryer'],
+    aliases: ['kitchen appliance compliance'],
+    priority: 9
+  },
+  {
+    title: 'Electric Power Tool EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for drills, grinders, saws and other electric power tools.',
+    href: '/products/electric-power-tool',
+    keywords: ['power tool', 'electric drill', 'cordless drill', 'angle grinder', 'electric saw'],
+    aliases: ['power tool compliance', 'electric tool compliance'],
+    priority: 10
+  },
+  {
     title: 'Electronics Product Guide',
     type: 'Product Guide',
     description: 'Product-focused overview of likely compliance research areas for electronics.',
@@ -294,7 +348,7 @@ const items: SearchItem[] = [
   }
 ];
 
-const quickSearches = ['USB charger', 'Wireless charger', 'Smartwatch', 'Bluetooth headphones', 'Power bank', 'LED driver', 'RED', 'Battery'];
+const quickSearches = ['Smart plug', 'Wi-Fi camera', 'Power tool', 'Hair dryer', 'Portable fan', 'Kitchen appliance', 'USB charger', 'RED'];
 
 function normalize(value: string) {
   return value
