@@ -24,7 +24,7 @@ export default function SiteFooter() {
           <h4>Explore</h4>
           <a href="/regulations">EU Regulations</a>
           <a href="/industries">Industries</a>
-          <a href="/products/electronics">Product Guides</a>
+          <a href="/products">Product Guides</a>
         </div>
 
         <div>
