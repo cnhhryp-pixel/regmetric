@@ -11,7 +11,6 @@ export default function AssessmentPage() {
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Assessment', path: '/assessment' }]} />
-      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Assessment', path: '/assessment' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Free Preliminary Assessment</span>
