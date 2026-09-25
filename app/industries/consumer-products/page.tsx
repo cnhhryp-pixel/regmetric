@@ -1,11 +1,16 @@
+import { BreadcrumbSchema, FaqSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU Consumer Product Compliance Guide | RegMetric',
+  title: 'EU Consumer Product Compliance Guide',
   description: 'Explore EU consumer-product compliance research including GPSR, REACH, product-specific rules, traceability, documentation and supplier evidence.',
+  alternates: { canonical: '/industries/consumer-products' },
 };
 
 export default function IndustryPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }, { name: 'Consumer Products', path: '/industries/consumer-products' }]} />
+      <FaqSchema items={[{question:"Is GPSR the only rule for consumer products?",answer:"Not necessarily. Product-specific EU legislation can apply alongside or instead of parts of the general safety framework."},{question:"What should importers collect from suppliers?",answer:"Enough current product, safety, traceability and material information to support their own obligations and checks."},{question:"Why review online product information?",answer:"Distance-selling and online listings can form part of the product-information and traceability workflow."}]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Consumer Product Compliance</span>
