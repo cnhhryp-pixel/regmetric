@@ -148,6 +148,12 @@ export default function Home() {
           <a href="/products/led-light">LED Light <span>→</span></a>
           <a href="/products/battery-powered-device">Battery-Powered Device <span>→</span></a>
           <a href="/products/electronic-toy">Electronic Toy <span>→</span></a>
+          <a href="/products/usb-charger">USB Charger <span>→</span></a>
+          <a href="/products/wireless-charger">Wireless Charger <span>→</span></a>
+          <a href="/products/smartwatch">Smartwatch <span>→</span></a>
+          <a href="/products/bluetooth-headphones">Bluetooth Headphones <span>→</span></a>
+          <a href="/products/power-bank">Power Bank <span>→</span></a>
+          <a href="/products/led-driver">LED Driver <span>→</span></a>
           <a href="/products">All Product Guides <span>→</span></a>
         </div>
       </section>
