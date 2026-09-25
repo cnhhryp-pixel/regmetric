@@ -50,7 +50,6 @@ export default function Regulations() {
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }]} />
-      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">EU Regulation Database</span>
