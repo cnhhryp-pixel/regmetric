@@ -11,7 +11,6 @@ export default function SearchPage() {
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Compliance Search', path: '/search' }]} />
-      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Compliance Search', path: '/search' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Compliance Search</span>
