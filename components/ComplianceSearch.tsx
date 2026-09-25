@@ -50,6 +50,51 @@ const items: SearchItem[] = [
     priority: 9
   },
   {
+    title: 'EMC',
+    type: 'Regulation',
+    description: 'Electromagnetic compatibility requirements for electrical and electronic equipment.',
+    href: '/regulations/emc',
+    keywords: ['electromagnetic compatibility', 'emissions', 'immunity', 'electronics', 'interference'],
+    aliases: ['emc directive', '2014/30/eu'],
+    priority: 9
+  },
+  {
+    title: 'Low Voltage Directive',
+    type: 'Regulation',
+    description: 'Electrical safety requirements for equipment in scope of Directive 2014/35/EU.',
+    href: '/regulations/lvd',
+    keywords: ['lvd', 'electrical safety', 'low voltage', 'electronics', '2014/35/eu'],
+    aliases: ['lvd', 'low voltage directive'],
+    priority: 9
+  },
+  {
+    title: 'WEEE',
+    type: 'Regulation',
+    description: 'Waste electrical and electronic equipment producer, reporting and recycling obligations.',
+    href: '/regulations/weee',
+    keywords: ['weee', 'e waste', 'recycling', 'producer registration', 'electrical waste'],
+    aliases: ['waste electrical electronic equipment'],
+    priority: 8
+  },
+  {
+    title: 'EU Batteries Regulation',
+    type: 'Regulation',
+    description: 'Battery safety, sustainability, information and end-of-life compliance research.',
+    href: '/regulations/batteries',
+    keywords: ['battery', 'batteries', '2023/1542', 'battery passport', 'waste batteries'],
+    aliases: ['batteries regulation', 'eu battery regulation'],
+    priority: 9
+  },
+  {
+    title: 'Machinery Regulation',
+    type: 'Regulation',
+    description: 'Transition planning and conformity research for Regulation (EU) 2023/1230.',
+    href: '/regulations/machinery-regulation',
+    keywords: ['machinery regulation', '2023/1230', 'machine safety', '2027'],
+    aliases: ['eu machinery regulation'],
+    priority: 9
+  },
+  {
     title: 'Electronics',
     type: 'Industry',
     description: 'Explore common compliance areas for connected devices and electrical products.',
@@ -141,7 +186,7 @@ const items: SearchItem[] = [
   }
 ];
 
-const quickSearches = ['Bluetooth speaker', 'Toy', 'Machinery', 'GPSR', 'CE marking', 'RoHS', 'REACH'];
+const quickSearches = ['Bluetooth speaker', 'Toy', 'Machinery', 'GPSR', 'CE marking', 'EMC', 'LVD', 'Battery'];
 
 function normalize(value: string) {
   return value
