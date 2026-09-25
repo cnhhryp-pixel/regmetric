@@ -154,6 +154,12 @@ export default function Home() {
           <a href="/products/bluetooth-headphones">Bluetooth Headphones <span>→</span></a>
           <a href="/products/power-bank">Power Bank <span>→</span></a>
           <a href="/products/led-driver">LED Driver <span>→</span></a>
+          <a href="/products/smart-plug">Smart Plug <span>→</span></a>
+          <a href="/products/wifi-camera">Wi-Fi Camera <span>→</span></a>
+          <a href="/products/electric-power-tool">Electric Power Tool <span>→</span></a>
+          <a href="/products/hair-dryer">Hair Dryer <span>→</span></a>
+          <a href="/products/portable-fan">Portable Fan <span>→</span></a>
+          <a href="/products/kitchen-appliance">Kitchen Appliance <span>→</span></a>
           <a href="/products">All Product Guides <span>→</span></a>
         </div>
       </section>
