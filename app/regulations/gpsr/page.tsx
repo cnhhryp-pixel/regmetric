@@ -1,6 +1,9 @@
+import { BreadcrumbSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU GPSR Compliance Guide | RegMetric',
+  title: 'EU GPSR Compliance Guide',
   description: 'Understand the EU General Product Safety Regulation, key obligations, documentation, traceability and market-entry considerations.',
+  alternates: { canonical: '/regulations/gpsr' },
 };
 
 const checklist = [
@@ -15,6 +18,7 @@ const checklist = [
 export default function GPSRPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }, { name: 'GPSR', path: '/regulations/gpsr' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">EU Product Safety</span>
