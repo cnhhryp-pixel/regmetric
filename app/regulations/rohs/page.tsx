@@ -1,6 +1,9 @@
+import { BreadcrumbSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU RoHS Compliance Guide | RegMetric',
+  title: 'EU RoHS Compliance Guide',
   description: 'Understand EU RoHS restricted-substance requirements, supplier evidence and documentation for electrical and electronic products.',
+  alternates: { canonical: '/regulations/rohs' },
 };
 
 const evidence = [
@@ -15,6 +18,7 @@ const evidence = [
 export default function RoHSPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }, { name: 'RoHS', path: '/regulations/rohs' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Electrical & Electronic Products</span>
