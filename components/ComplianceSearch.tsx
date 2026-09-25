@@ -95,6 +95,15 @@ const items: SearchItem[] = [
     priority: 9
   },
   {
+    title: 'Radio Equipment Directive',
+    type: 'Regulation',
+    description: 'EU radio-equipment requirements for Bluetooth, Wi-Fi and other intentional radio functions.',
+    href: '/regulations/red',
+    keywords: ['red', 'radio equipment directive', 'bluetooth', 'wifi', 'wireless', 'radio', '2014/53/eu'],
+    aliases: ['red directive', 'radio equipment'],
+    priority: 10
+  },
+  {
     title: 'Electronics',
     type: 'Industry',
     description: 'Explore common compliance areas for connected devices and electrical products.',
@@ -149,6 +158,51 @@ const items: SearchItem[] = [
     priority: 7
   },
   {
+    title: 'Bluetooth Speaker EU Compliance',
+    type: 'Product Guide',
+    description: 'Product-specific EU compliance research for Bluetooth speakers and wireless audio devices.',
+    href: '/products/bluetooth-speaker',
+    keywords: ['bluetooth speaker', 'wireless speaker', 'speaker compliance', 'red', 'battery speaker'],
+    aliases: ['bluetooth speaker compliance', 'wireless speaker compliance'],
+    priority: 10
+  },
+  {
+    title: 'Power Adapter EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for external power supplies, chargers and power adapters.',
+    href: '/products/power-adapter',
+    keywords: ['power adapter', 'power supply', 'external power supply', 'charger', 'ac dc adapter'],
+    aliases: ['adapter compliance', 'charger compliance'],
+    priority: 9
+  },
+  {
+    title: 'LED Light EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for LED lights, light sources, luminaires and control gear.',
+    href: '/products/led-light',
+    keywords: ['led light', 'led lamp', 'lighting', 'luminaire', 'light source'],
+    aliases: ['led compliance', 'led lamp compliance'],
+    priority: 9
+  },
+  {
+    title: 'Battery-Powered Product EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for devices containing rechargeable or replaceable batteries.',
+    href: '/products/battery-powered-device',
+    keywords: ['battery powered device', 'battery product', 'rechargeable device', 'portable electronics'],
+    aliases: ['battery device compliance', 'battery product compliance'],
+    priority: 9
+  },
+  {
+    title: 'Electronic Toy EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for toys containing electronics, batteries or wireless functions.',
+    href: '/products/electronic-toy',
+    keywords: ['electronic toy', 'battery toy', 'bluetooth toy', 'connected toy', 'remote control toy'],
+    aliases: ['electronic toy compliance'],
+    priority: 9
+  },
+  {
     title: 'Electronics Product Guide',
     type: 'Product Guide',
     description: 'Product-focused overview of likely compliance research areas for electronics.',
@@ -186,7 +240,7 @@ const items: SearchItem[] = [
   }
 ];
 
-const quickSearches = ['Bluetooth speaker', 'Toy', 'Machinery', 'GPSR', 'CE marking', 'EMC', 'LVD', 'Battery'];
+const quickSearches = ['Bluetooth speaker', 'Power adapter', 'LED light', 'Electronic toy', 'Battery device', 'RED', 'GPSR', 'CE marking'];
 
 function normalize(value: string) {
   return value
