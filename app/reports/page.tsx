@@ -1,8 +1,10 @@
 import ReportPreview from '../../components/ReportPreview';
+import { BreadcrumbSchema } from '../../components/SeoSchemas';
 
 export const metadata = {
-  title: 'Product Compliance Reports | RegMetric',
+  title: 'Product Compliance Reports',
   description: 'Preview how RegMetric organizes product scope, regulatory areas, evidence, risks and next actions into a structured compliance report.',
+  alternates: { canonical: '/reports' },
 };
 
 const included = [
@@ -17,6 +19,7 @@ const included = [
 export default function ReportsPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Reports', path: '/reports' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Compliance Reports</span>
