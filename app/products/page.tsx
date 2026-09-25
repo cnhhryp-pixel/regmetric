@@ -2,7 +2,7 @@ import { BreadcrumbSchema } from '../../components/SeoSchemas';
 
 export const metadata = {
   title: 'Product Compliance Guides',
-  description: 'Browse product compliance guides for electronics, toys, machinery and automotive components.',
+  description: 'Browse EU product compliance guides for electronics, toys, machinery, automotive components, Bluetooth speakers, power adapters, LED lights and battery-powered devices.',
   alternates: { canonical: '/products' },
 };
 
@@ -12,6 +12,36 @@ const guides = [
     href: '/products/electronics',
     text: 'Electronics, electrical equipment and connected devices.',
     tags: 'CE · RoHS · REACH · Product Safety'
+  },
+  {
+    name: 'Bluetooth Speaker',
+    href: '/products/bluetooth-speaker',
+    text: 'Bluetooth speakers and other radio-enabled audio products.',
+    tags: 'RED · RoHS · REACH · Batteries · WEEE'
+  },
+  {
+    name: 'Power Adapter',
+    href: '/products/power-adapter',
+    text: 'External power supplies, chargers and AC/DC adapters.',
+    tags: 'LVD · EMC · RoHS · WEEE · Ecodesign'
+  },
+  {
+    name: 'LED Light',
+    href: '/products/led-light',
+    text: 'LED light sources, luminaires and related control gear.',
+    tags: 'LVD · EMC · RoHS · WEEE · Ecodesign'
+  },
+  {
+    name: 'Battery-Powered Device',
+    href: '/products/battery-powered-device',
+    text: 'Portable electronics and devices containing rechargeable or replaceable batteries.',
+    tags: 'Batteries · RoHS · REACH · WEEE · RED'
+  },
+  {
+    name: 'Electronic Toy',
+    href: '/products/electronic-toy',
+    text: 'Electronic and connected toys with battery or radio features.',
+    tags: 'CE · Toy Safety · RED · RoHS · Batteries'
   },
   {
     name: 'Toys',
@@ -49,7 +79,7 @@ export default function ProductsPage() {
       </section>
 
       <section className="section container">
-        <div className="card-grid regulation-grid">
+        <div className="card-grid industry-grid">
           {guides.map((guide) => (
             <a className="card interactive-card" href={guide.href} key={guide.name}>
               <span className="card-badge">Product Guide</span>
