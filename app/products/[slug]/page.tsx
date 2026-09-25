@@ -82,6 +82,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Products', path: '/products' }, { name: product.title, path: `/products/${slug}` }]} />
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Products', path: '/products' }, { name: product.title, path: `/products/${slug}` }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Product Compliance Guide</span>
