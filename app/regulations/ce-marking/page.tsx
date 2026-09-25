@@ -1,6 +1,9 @@
+import { BreadcrumbSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'CE Marking Compliance Guide | RegMetric',
+  title: 'CE Marking Compliance Guide',
   description: 'Understand when CE marking applies, conformity assessment, technical documentation and declaration requirements for EU market access.',
+  alternates: { canonical: '/regulations/ce-marking' },
 };
 
 const steps = [
@@ -15,6 +18,7 @@ const steps = [
 export default function CEMarkingPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }, { name: 'CE Marking', path: '/regulations/ce-marking' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">EU Market Access</span>
