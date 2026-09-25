@@ -11,7 +11,7 @@ export default function Header() {
           <a href="/search">Compliance Search</a>
           <a href="/regulations">Regulations</a>
           <a href="/industries">Industries</a>
-          <a href="/products/electronics">Products</a>
+          <a href="/products">Products</a>
           <a href="/reports">Reports</a>
         </nav>
 
