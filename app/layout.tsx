@@ -1,6 +1,7 @@
 import './globals.css';
 import Header from '../components/Header';
 import SiteFooter from '../components/SiteFooter';
+import StructuredData from '../components/StructuredData';
 
 export const metadata = {
   metadataBase: new URL('https://regmetric.com'),
@@ -23,10 +24,27 @@ export const metadata = {
   },
 };
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'RegMetric',
+  url: 'https://regmetric.com'
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'RegMetric',
+  url: 'https://regmetric.com',
+  description: 'EU product compliance intelligence, research, assessment and reporting tools.'
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
+        <StructuredData data={organizationJsonLd} />
+        <StructuredData data={websiteJsonLd} />
         <Header />
         {children}
         <SiteFooter />
