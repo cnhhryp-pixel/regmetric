@@ -1,13 +1,16 @@
 import ComplianceSearch from '../../components/ComplianceSearch';
+import { BreadcrumbSchema } from '../../components/SeoSchemas';
 
 export const metadata = {
-  title: 'Compliance Search | RegMetric',
+  title: 'Compliance Search',
   description: 'Search product compliance requirements by product name, regulation and industry.',
+  alternates: { canonical: '/search' },
 };
 
 export default function SearchPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Compliance Search', path: '/search' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Compliance Search</span>
