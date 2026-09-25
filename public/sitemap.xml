@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://regmetric.com/</loc>
-  </url>
-  <url>
-    <loc>https://regmetric.com/compliance-checker</loc>
-  </url>
-  <url>
-    <loc>https://regmetric.com/regulations</loc>
-  </url>
-  <url>
-    <loc>https://regmetric.com/reports</loc>
-  </url>
+  <url><loc>https://regmetric.com/</loc></url>
+  <url><loc>https://regmetric.com/search</loc></url>
+  <url><loc>https://regmetric.com/assessment</loc></url>
+  <url><loc>https://regmetric.com/reports</loc></url>
+  <url><loc>https://regmetric.com/regulations</loc></url>
+  <url><loc>https://regmetric.com/regulations/gpsr</loc></url>
+  <url><loc>https://regmetric.com/regulations/ce-marking</loc></url>
+  <url><loc>https://regmetric.com/regulations/rohs</loc></url>
+  <url><loc>https://regmetric.com/regulations/reach</loc></url>
+  <url><loc>https://regmetric.com/industries</loc></url>
+  <url><loc>https://regmetric.com/industries/electronics</loc></url>
+  <url><loc>https://regmetric.com/industries/toys</loc></url>
+  <url><loc>https://regmetric.com/industries/machinery</loc></url>
+  <url><loc>https://regmetric.com/industries/automotive</loc></url>
+  <url><loc>https://regmetric.com/industries/medical-devices</loc></url>
+  <url><loc>https://regmetric.com/industries/consumer-products</loc></url>
+  <url><loc>https://regmetric.com/products/electronics</loc></url>
+  <url><loc>https://regmetric.com/products/toys</loc></url>
+  <url><loc>https://regmetric.com/products/machinery</loc></url>
+  <url><loc>https://regmetric.com/products/automotive</loc></url>
 </urlset>
