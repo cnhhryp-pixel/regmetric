@@ -167,6 +167,24 @@ const items: SearchItem[] = [
     priority: 10
   },
   {
+    title: 'Bluetooth Headphones EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for Bluetooth headphones, earbuds and charging cases.',
+    href: '/products/bluetooth-headphones',
+    keywords: ['bluetooth headphones', 'wireless earbuds', 'earbuds', 'headset', 'charging case'],
+    aliases: ['bluetooth earbuds compliance', 'wireless headphones compliance'],
+    priority: 10
+  },
+  {
+    title: 'Smartwatch EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for smartwatches and wearable devices.',
+    href: '/products/smartwatch',
+    keywords: ['smartwatch', 'smart watch', 'wearable', 'fitness watch', 'bluetooth watch'],
+    aliases: ['smartwatch compliance', 'wearable compliance'],
+    priority: 10
+  },
+  {
     title: 'Power Adapter EU Compliance',
     type: 'Product Guide',
     description: 'EU compliance research for external power supplies, chargers and power adapters.',
@@ -174,6 +192,24 @@ const items: SearchItem[] = [
     keywords: ['power adapter', 'power supply', 'external power supply', 'charger', 'ac dc adapter'],
     aliases: ['adapter compliance', 'charger compliance'],
     priority: 9
+  },
+  {
+    title: 'USB Charger EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for USB and USB-C chargers and external power supplies.',
+    href: '/products/usb-charger',
+    keywords: ['usb charger', 'usb c charger', 'usb-c charger', 'pd charger', 'gan charger'],
+    aliases: ['usb charger compliance', 'usb c charger compliance'],
+    priority: 10
+  },
+  {
+    title: 'Wireless Charger EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for wireless charging pads and stands.',
+    href: '/products/wireless-charger',
+    keywords: ['wireless charger', 'wireless charging pad', 'qi charger', 'charging stand'],
+    aliases: ['wireless charger compliance'],
+    priority: 10
   },
   {
     title: 'LED Light EU Compliance',
@@ -185,6 +221,15 @@ const items: SearchItem[] = [
     priority: 9
   },
   {
+    title: 'LED Driver EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for LED drivers and separate lighting control gear.',
+    href: '/products/led-driver',
+    keywords: ['led driver', 'lighting driver', 'constant current driver', 'led power supply'],
+    aliases: ['led driver compliance'],
+    priority: 9
+  },
+  {
     title: 'Battery-Powered Product EU Compliance',
     type: 'Product Guide',
     description: 'EU compliance research for devices containing rechargeable or replaceable batteries.',
@@ -192,6 +237,15 @@ const items: SearchItem[] = [
     keywords: ['battery powered device', 'battery product', 'rechargeable device', 'portable electronics'],
     aliases: ['battery device compliance', 'battery product compliance'],
     priority: 9
+  },
+  {
+    title: 'Power Bank EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for portable rechargeable battery packs and power banks.',
+    href: '/products/power-bank',
+    keywords: ['power bank', 'portable charger', 'battery pack', 'usb power bank'],
+    aliases: ['powerbank compliance', 'power bank compliance'],
+    priority: 10
   },
   {
     title: 'Electronic Toy EU Compliance',
@@ -240,7 +294,7 @@ const items: SearchItem[] = [
   }
 ];
 
-const quickSearches = ['Bluetooth speaker', 'Power adapter', 'LED light', 'Electronic toy', 'Battery device', 'RED', 'GPSR', 'CE marking'];
+const quickSearches = ['USB charger', 'Wireless charger', 'Smartwatch', 'Bluetooth headphones', 'Power bank', 'LED driver', 'RED', 'Battery'];
 
 function normalize(value: string) {
   return value
