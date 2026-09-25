@@ -1,33 +1,56 @@
 export const metadata = {
   title: 'Industries | RegMetric Compliance Intelligence',
-  description: 'Explore product compliance requirements across electronics, toys, machinery, automotive and consumer products.',
+  description: 'Explore product compliance requirements across electronics, toys, machinery, automotive, medical devices and consumer products.',
 };
 
 const industries = [
-  ['Electronics', 'Compliance intelligence for connected devices, electronics and electrical products.'],
-  ['Toys', 'Understand safety and regulatory requirements for toys entering global markets.'],
-  ['Machinery', 'Identify compliance considerations for industrial equipment and machinery.'],
-  ['Automotive', 'Support automotive suppliers with regulatory information and risk assessment.'],
-  ['Medical Devices', 'Organize compliance requirements for healthcare-related products.'],
-  ['Consumer Products', 'Manage product compliance information for everyday consumer goods.'],
+  ['Electronics', 'Connected devices, electrical equipment and electronics.', '/industries/electronics', 'CE · RoHS · EMC · LVD'],
+  ['Toys', 'Safety, testing and conformity requirements for toy products.', '/industries/toys', 'Toy Safety · CE · GPSR'],
+  ['Machinery', 'Industrial equipment, machinery safety and technical files.', '/industries/machinery', 'Machinery · CE'],
+  ['Automotive', 'Components, materials and product compliance considerations.', '/industries/automotive', 'Safety · Materials'],
+  ['Medical Devices', 'Structured regulatory research for healthcare products.', '/industries/medical-devices', 'Market access · Documentation'],
+  ['Consumer Products', 'General product safety and consumer-goods obligations.', '/industries/consumer-products', 'GPSR · REACH']
 ];
 
 export default function IndustriesPage() {
   return (
-    <main className="container">
-      <section className="hero">
-        <p className="eyebrow">Industries</p>
-        <h1>Compliance Intelligence Across Global Industries</h1>
-        <p>RegMetric helps companies identify regulatory requirements before launching products in international markets.</p>
+    <main>
+      <section className="page-hero">
+        <div className="container narrow">
+          <span className="pill">Industry Compliance Guides</span>
+          <h1>Find compliance requirements by product industry.</h1>
+          <p>
+            Start with the industry closest to your product, then explore likely
+            EU regulations, documentation needs and assessment workflows.
+          </p>
+        </div>
       </section>
 
-      <section className="card-grid">
-        {industries.map(([name, text]) => (
-          <div className="card" key={name}>
-            <h2>{name}</h2>
-            <p>{text}</p>
+      <section className="section container">
+        <div className="card-grid industry-grid">
+          {industries.map(([name, text, href, regs]) => (
+            <a className="card interactive-card" href={href} key={name}>
+              <span className="card-badge">Industry</span>
+              <h2>{name}</h2>
+              <p>{text}</p>
+              <div className="meta-line">{regs}</div>
+              <span className="card-link">Explore guide →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="section container">
+        <div className="cta-panel compact">
+          <div>
+            <h2>Not sure which industry applies?</h2>
+            <p>Start with Compliance Search or use the free assessment workflow.</p>
           </div>
-        ))}
+          <div className="hero-actions">
+            <a className="button button-light" href="/search">Search</a>
+            <a className="button button-ghost-light" href="/assessment">Assessment</a>
+          </div>
+        </div>
       </section>
     </main>
   );
