@@ -85,6 +85,8 @@ export default function Home() {
               <a href="/regulations/ce-marking">CE Marking</a>
               <a href="/regulations/rohs">RoHS</a>
               <a href="/regulations/reach">REACH</a>
+              <a href="/regulations/emc">EMC</a>
+              <a href="/regulations/lvd">LVD</a>
             </div>
           </div>
         </div>
@@ -129,6 +131,24 @@ export default function Home() {
               <a href={href} key={name}>{name}<span>→</span></a>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section container">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">More EU compliance areas</span>
+            <h2>Research beyond the first four regulations.</h2>
+          </div>
+          <a className="text-link" href="/regulations">View regulation database →</a>
+        </div>
+        <div className="industry-links">
+          <a href="/regulations/emc">EMC <span>→</span></a>
+          <a href="/regulations/lvd">Low Voltage Directive <span>→</span></a>
+          <a href="/regulations/weee">WEEE <span>→</span></a>
+          <a href="/regulations/batteries">Batteries Regulation <span>→</span></a>
+          <a href="/regulations/machinery-regulation">Machinery Regulation <span>→</span></a>
+          <a href="/regulations">All Regulations <span>→</span></a>
         </div>
       </section>
 
