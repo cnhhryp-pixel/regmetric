@@ -2,7 +2,7 @@ import { BreadcrumbSchema } from '../../components/SeoSchemas';
 
 export const metadata = {
   title: 'EU Regulations Database',
-  description: 'Explore European product compliance regulations including GPSR, CE marking, RoHS, REACH, EMC, LVD, WEEE, Batteries and Machinery Regulation requirements.',
+  description: 'Explore European product compliance regulations including GPSR, CE marking, RoHS, REACH, EMC, LVD, WEEE, Batteries, Radio Equipment and Machinery Regulation requirements.',
   alternates: { canonical: '/regulations' },
 };
 
@@ -69,6 +69,13 @@ const regulations = [
     description: 'Prepare machinery compliance workflows for the Regulation that generally applies from 20 January 2027.',
     href: '/regulations/machinery-regulation',
     group: 'Machinery'
+  },
+  {
+    name: 'RED',
+    title: 'Radio Equipment Directive',
+    description: 'Research safety, EMC, radio-spectrum and documentation requirements for Bluetooth, Wi-Fi and other radio equipment.',
+    href: '/regulations/red',
+    group: 'Wireless'
   }
 ];
 
