@@ -1,11 +1,16 @@
+import { BreadcrumbSchema, FaqSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU Machinery Compliance Guide | RegMetric',
+  title: 'EU Machinery Compliance Guide',
   description: 'Explore EU machinery compliance research including CE marking, risk assessment, technical documentation, instructions and conformity evidence.',
+  alternates: { canonical: '/industries/machinery' },
 };
 
 export default function IndustryPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }, { name: 'Machinery', path: '/industries/machinery' }]} />
+      <FaqSchema items={[{question:"What should be assessed before testing?",answer:"Define the machine, intended use, limits, users and foreseeable hazards so testing supports the actual conformity case."},{question:"Why is the risk assessment important?",answer:"It connects identified hazards to design controls, protective measures, instructions and evidence."},{question:"Do supplier components need documentation?",answer:"Yes, component evidence can be important where those components support safety or conformity claims for the complete machine."}]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Machinery Compliance</span>
