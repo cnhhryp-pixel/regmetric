@@ -1,13 +1,16 @@
 import AssessmentTool from '../../components/AssessmentTool';
+import { BreadcrumbSchema } from '../../components/SeoSchemas';
 
 export const metadata = {
-  title: 'Free Product Compliance Assessment | RegMetric',
+  title: 'Free Product Compliance Assessment',
   description: 'Run a preliminary product compliance assessment for EU market-entry research.',
+  alternates: { canonical: '/assessment' },
 };
 
 export default function AssessmentPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Assessment', path: '/assessment' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Free Preliminary Assessment</span>
