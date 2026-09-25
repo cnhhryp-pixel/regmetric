@@ -20,7 +20,6 @@ export default function ReportsPage() {
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Reports', path: '/reports' }]} />
-      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Reports', path: '/reports' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Compliance Reports</span>
