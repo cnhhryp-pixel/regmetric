@@ -1,6 +1,9 @@
+import { BreadcrumbSchema } from '../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'Industries | RegMetric Compliance Intelligence',
+  title: 'Industry Compliance Guides',
   description: 'Explore product compliance requirements across electronics, toys, machinery, automotive, medical devices and consumer products.',
+  alternates: { canonical: '/industries' },
 };
 
 const industries = [
@@ -15,6 +18,7 @@ const industries = [
 export default function IndustriesPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Industry Compliance Guides</span>
