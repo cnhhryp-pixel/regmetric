@@ -37,7 +37,6 @@ export default function ProductsPage() {
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Products', path: '/products' }]} />
-      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Products', path: '/products' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Product Compliance Guides</span>
