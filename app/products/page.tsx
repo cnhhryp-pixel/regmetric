@@ -20,10 +20,34 @@ const guides = [
     tags: 'RED · RoHS · REACH · Batteries · WEEE'
   },
   {
+    name: 'Bluetooth Headphones',
+    href: '/products/bluetooth-headphones',
+    text: 'Wireless headphones, earbuds and charging cases.',
+    tags: 'RED · Batteries · RoHS · REACH · WEEE'
+  },
+  {
+    name: 'Smartwatch',
+    href: '/products/smartwatch',
+    text: 'Wearable electronics with Bluetooth, Wi-Fi, NFC or cellular functions.',
+    tags: 'RED · Batteries · RoHS · REACH · WEEE'
+  },
+  {
     name: 'Power Adapter',
     href: '/products/power-adapter',
     text: 'External power supplies, chargers and AC/DC adapters.',
     tags: 'LVD · EMC · RoHS · WEEE · Ecodesign'
+  },
+  {
+    name: 'USB Charger',
+    href: '/products/usb-charger',
+    text: 'USB and USB-C chargers, external power supplies and charging devices.',
+    tags: 'LVD · EMC · RoHS · WEEE · Ecodesign'
+  },
+  {
+    name: 'Wireless Charger',
+    href: '/products/wireless-charger',
+    text: 'Wireless charging pads and charging stands.',
+    tags: 'EMC · RoHS · REACH · WEEE · Ecodesign'
   },
   {
     name: 'LED Light',
@@ -32,10 +56,22 @@ const guides = [
     tags: 'LVD · EMC · RoHS · WEEE · Ecodesign'
   },
   {
+    name: 'LED Driver',
+    href: '/products/led-driver',
+    text: 'LED drivers and separate control gear for lighting products.',
+    tags: 'LVD · EMC · RoHS · REACH · Lighting Ecodesign'
+  },
+  {
     name: 'Battery-Powered Device',
     href: '/products/battery-powered-device',
     text: 'Portable electronics and devices containing rechargeable or replaceable batteries.',
     tags: 'Batteries · RoHS · REACH · WEEE · RED'
+  },
+  {
+    name: 'Power Bank',
+    href: '/products/power-bank',
+    text: 'Portable rechargeable battery packs and USB power banks.',
+    tags: 'Batteries · RoHS · REACH · WEEE · Product Safety'
   },
   {
     name: 'Electronic Toy',
