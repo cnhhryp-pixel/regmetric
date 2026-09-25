@@ -1,4 +1,5 @@
-/compliance-checker /product-compliance-checker 301
+/compliance-checker /assessment 301
+/product-compliance-checker /assessment 301
 /compliance-report /reports 301
 /eu-regulation-database /regulations 301
 /* /index.html 200
