@@ -1,36 +1,97 @@
+import ReportPreview from '../../components/ReportPreview';
+
 export const metadata = {
-  title: 'Compliance Reports | RegMetric',
-  description: 'Generate structured product compliance reports for global market preparation.',
+  title: 'Product Compliance Reports | RegMetric',
+  description: 'Preview how RegMetric organizes product scope, regulatory areas, evidence, risks and next actions into a structured compliance report.',
 };
 
-const features = [
-  'Product compliance summary',
-  'Applicable regulations overview',
-  'Risk identification',
-  'Professional report format'
+const included = [
+  'Product and market summary',
+  'Potentially relevant regulatory areas',
+  'Evidence and documentation checklist',
+  'Potential gaps and risk themes',
+  'Recommended next actions',
+  'Internal review notes and follow-up items'
 ];
 
 export default function ReportsPage() {
   return (
-    <main className="container">
-      <section className="hero">
-        <p className="eyebrow">Compliance Reports</p>
-        <h1>Turn Compliance Analysis Into Professional Reports</h1>
-        <p>
-          RegMetric helps companies organize regulatory information into clear
-          compliance documents for internal review and market preparation.
-        </p>
+    <main>
+      <section className="page-hero">
+        <div className="container narrow">
+          <span className="pill">Compliance Reports</span>
+          <h1>Turn scattered compliance research into a report your team can use.</h1>
+          <p>
+            RegMetric report workflows organize product scope, likely regulatory
+            areas, evidence, gaps and next actions into a clearer review format.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href="/assessment">Run Assessment First</a>
+            <a className="button button-secondary" href="/search">Search Regulations</a>
+          </div>
+        </div>
       </section>
 
-      <section className="card-grid">
-        <div className="card"><h2>Free Report Preview</h2><p>Review compliance findings and key regulatory information.</p></div>
-        <div className="card"><h2>Professional Report</h2><p>Generate structured reports with expanded compliance details.</p></div>
-        <div className="card"><h2>Enterprise Workflow</h2><p>Support teams managing multiple products and markets.</p></div>
+      <section className="section container">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">Interactive preview</span>
+            <h2>See how a preliminary report is structured.</h2>
+          </div>
+          <p>
+            Change the product category and supply-chain role to preview how the
+            report sections adapt.
+          </p>
+        </div>
+
+        <ReportPreview />
       </section>
 
-      <section className="card" style={{marginTop:'40px'}}>
-        <h2>Report Includes</h2>
-        {features.map((feature) => <p key={feature}>✓ {feature}</p>)}
+      <section className="section section-soft">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">Report structure</span>
+              <h2>Designed for internal review and follow-up.</h2>
+            </div>
+          </div>
+
+          <div className="list-grid">
+            {included.map((item) => (
+              <div className="list-item" key={item}>{item}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section container">
+        <div className="workflow">
+          <div className="workflow-copy">
+            <span className="eyebrow">From screen to report</span>
+            <h2>Keep the workflow connected.</h2>
+            <p>
+              Start with search, narrow the scope with an assessment, then organize
+              the findings into a report instead of repeating research manually.
+            </p>
+          </div>
+
+          <div className="workflow-steps">
+            <div><span>01</span><strong>Search</strong><p>Find relevant product, industry and regulation pages.</p></div>
+            <div><span>02</span><strong>Assess</strong><p>Add product category and supply-chain role.</p></div>
+            <div><span>03</span><strong>Review</strong><p>Check likely requirements, evidence and gaps.</p></div>
+            <div><span>04</span><strong>Report</strong><p>Organize the findings into a reusable internal document.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section container">
+        <div className="cta-panel compact">
+          <div>
+            <h2>Start with a preliminary product assessment.</h2>
+            <p>Build the scope first, then use the report workflow to organize the result.</p>
+          </div>
+          <a className="button button-light" href="/assessment">Start Assessment</a>
+        </div>
       </section>
     </main>
   );
