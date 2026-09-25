@@ -19,6 +19,7 @@ export default function GPSRPage() {
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }, { name: 'GPSR', path: '/regulations/gpsr' }]} />
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }, { name: 'GPSR', path: '/regulations/gpsr' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">EU Product Safety</span>
