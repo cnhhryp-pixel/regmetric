@@ -1,11 +1,16 @@
+import { BreadcrumbSchema, FaqSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU Electronics Compliance Guide | RegMetric',
+  title: 'EU Electronics Compliance Guide',
   description: 'Explore EU compliance research areas for electronics, electrical products and connected devices, including CE marking, RoHS, REACH and product safety.',
+  alternates: { canonical: '/industries/electronics' },
 };
 
 export default function IndustryPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }, { name: 'Electronics', path: '/industries/electronics' }]} />
+      <FaqSchema items={[{question:"Does every electronic product need CE marking?",answer:"No single rule covers every electronic product. Product function, voltage, radio capability and intended use help determine which EU legislation is relevant."},{question:"Are RoHS and REACH the same thing?",answer:"No. They address different substance and chemical-compliance questions and can both be relevant to the same product."},{question:"When should testing start?",answer:"After the product scope and applicable requirements are mapped clearly enough to know what evidence the test program needs to support."}]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Electronics Compliance</span>
