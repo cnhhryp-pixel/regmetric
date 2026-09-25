@@ -1,11 +1,16 @@
+import { BreadcrumbSchema, FaqSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU Toy Compliance Guide | RegMetric',
+  title: 'EU Toy Compliance Guide',
   description: 'Explore EU toy compliance research areas including CE marking, product safety, materials, testing, warnings and technical documentation.',
+  alternates: { canonical: '/industries/toys' },
 };
 
 export default function IndustryPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }, { name: 'Toys', path: '/industries/toys' }]} />
+      <FaqSchema items={[{question:"Why does age grading matter?",answer:"Intended age can change foreseeable hazards, warnings, testing needs and the way the product should be assessed."},{question:"What if a toy contains electronics?",answer:"Electronic functions can introduce additional compliance areas beyond toy-specific safety requirements."},{question:"Are supplier declarations enough?",answer:"They can support the file, but the right evidence depends on the exact material, component and risk being assessed."}]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Toy Compliance</span>
