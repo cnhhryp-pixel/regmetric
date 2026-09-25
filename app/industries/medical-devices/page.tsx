@@ -1,11 +1,16 @@
+import { BreadcrumbSchema, FaqSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU Medical Device Compliance Research | RegMetric',
+  title: 'EU Medical Device Compliance Research',
   description: 'Explore early EU medical-device compliance research areas including intended purpose, classification, technical documentation, risk management and market-access planning.',
+  alternates: { canonical: '/industries/medical-devices' },
 };
 
 export default function IndustryPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }, { name: 'Medical Devices', path: '/industries/medical-devices' }]} />
+      <FaqSchema items={[{question:"Why is intended purpose so important?",answer:"It is a foundational input to whether a product is a medical device and how the regulatory pathway is determined."},{question:"Can a general compliance checklist replace classification work?",answer:"No. Classification and product-specific requirements should be established before relying on a generic checklist."},{question:"Does RegMetric provide a final medical-device determination?",answer:"No. The site is an early research aid; specialist review may be appropriate for classification and conformity decisions."}]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Medical Device Research</span>
