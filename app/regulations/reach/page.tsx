@@ -1,6 +1,9 @@
+import { BreadcrumbSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU REACH Compliance Guide | RegMetric',
+  title: 'EU REACH Compliance Guide',
   description: 'Understand EU REACH substance, SVHC, supplier communication and product-material compliance considerations.',
+  alternates: { canonical: '/regulations/reach' },
 };
 
 const questions = [
@@ -15,6 +18,7 @@ const questions = [
 export default function REACHPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Regulations', path: '/regulations' }, { name: 'REACH', path: '/regulations/reach' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Chemical Compliance</span>
