@@ -32,6 +32,18 @@ const guides = [
     tags: 'RED · Batteries · RoHS · REACH · WEEE'
   },
   {
+    name: 'Smart Plug',
+    href: '/products/smart-plug',
+    text: 'Connected sockets with Wi-Fi, Bluetooth or Zigbee control.',
+    tags: 'RED · LVD · RoHS · REACH · WEEE'
+  },
+  {
+    name: 'Wi-Fi Camera',
+    href: '/products/wifi-camera',
+    text: 'Connected indoor and outdoor security cameras.',
+    tags: 'RED · RoHS · REACH · WEEE · Power Supply'
+  },
+  {
     name: 'Power Adapter',
     href: '/products/power-adapter',
     text: 'External power supplies, chargers and AC/DC adapters.',
@@ -78,6 +90,30 @@ const guides = [
     href: '/products/electronic-toy',
     text: 'Electronic and connected toys with battery or radio features.',
     tags: 'CE · Toy Safety · RED · RoHS · Batteries'
+  },
+  {
+    name: 'Portable Fan',
+    href: '/products/portable-fan',
+    text: 'USB, rechargeable and connected portable fans.',
+    tags: 'Batteries · RoHS · REACH · WEEE · RED'
+  },
+  {
+    name: 'Hair Dryer',
+    href: '/products/hair-dryer',
+    text: 'Mains-powered personal-care appliances with heating and motors.',
+    tags: 'LVD · EMC · RoHS · REACH · WEEE'
+  },
+  {
+    name: 'Kitchen Appliance',
+    href: '/products/kitchen-appliance',
+    text: 'Small household kitchen appliances with motors or heating.',
+    tags: 'LVD · EMC · RoHS · REACH · WEEE'
+  },
+  {
+    name: 'Electric Power Tool',
+    href: '/products/electric-power-tool',
+    text: 'Corded and cordless drills, grinders, saws and other power tools.',
+    tags: 'Machinery · EMC · RoHS · Batteries · WEEE'
   },
   {
     name: 'Toys',
