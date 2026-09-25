@@ -1,11 +1,16 @@
+import { BreadcrumbSchema, FaqSchema } from '../../../components/SeoSchemas';
+
 export const metadata = {
-  title: 'EU Automotive Product Compliance Guide | RegMetric',
+  title: 'EU Automotive Product Compliance Guide',
   description: 'Explore EU automotive component compliance research covering product classification, material requirements, supplier evidence and customer documentation.',
+  alternates: { canonical: '/industries/automotive' },
 };
 
 export default function IndustryPage() {
   return (
     <main>
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }, { name: 'Automotive', path: '/industries/automotive' }]} />
+      <FaqSchema items={[{question:"Does every automotive part need the same approval route?",answer:"No. The product function, installation location and relationship to regulated vehicle systems can change the applicable pathway."},{question:"Why separate legal and customer requirements?",answer:"OEM or customer requirements can be stricter or simply different from legal market-access obligations."},{question:"What supplier evidence is useful?",answer:"Specifications, material declarations, traceability records and test or approval evidence tied to the actual supplied part."}]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Automotive Compliance</span>
