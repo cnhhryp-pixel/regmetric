@@ -19,6 +19,7 @@ export default function IndustriesPage() {
   return (
     <main>
       <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }]} />
+      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }]} />
       <section className="page-hero">
         <div className="container narrow">
           <span className="pill">Industry Compliance Guides</span>
