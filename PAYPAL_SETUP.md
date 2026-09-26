@@ -35,3 +35,29 @@ After successful sandbox testing, replace the credentials with the live REST app
 - `PAYPAL_ENV=live`
 
 The paid PDF is generated in the customer's browser after successful server-side payment verification.
+
+
+## Configuration check
+
+After deployment, open:
+
+`https://regmetric.com/api/paypal/status`
+
+Expected sandbox response after credentials are configured:
+
+```json
+{
+  "configured": true,
+  "environment": "sandbox",
+  "price": "49.00",
+  "currency": "EUR"
+}
+```
+
+The endpoint never returns the PayPal client secret.
+
+The Reports page also checks this endpoint automatically:
+
+- **PayPal Sandbox ready** — credentials are present and sandbox mode is active.
+- **PayPal Live ready** — live credentials are present.
+- **PayPal setup required** — the paid PDF button stays disabled until Cloudflare environment variables are configured.
