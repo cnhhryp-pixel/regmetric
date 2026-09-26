@@ -5,6 +5,19 @@ type Env = {
   REPORT_PRICE_EUR?: string;
 };
 
+type ReportPayload = {
+  productName: string;
+  companyName: string;
+  preparedFor: string;
+  categoryLabel: string;
+  roleLabel: string;
+  reportDate: string;
+  reportId: string;
+  regulations: string[];
+  evidence: string[];
+  risks: string[];
+};
+
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), {
     status,
@@ -31,26 +44,48 @@ async function getAccessToken(env: Env) {
     body: 'grant_type=client_credentials'
   });
 
-  if (!response.ok) {
-    throw new Error('PAYPAL_AUTH_FAILED');
-  }
+  if (!response.ok) throw new Error('PAYPAL_AUTH_FAILED');
 
   const data = (await response.json()) as { access_token: string };
   return { base, token: data.access_token };
 }
 
+function canonicalReport(report: ReportPayload) {
+  return JSON.stringify({
+    productName: report.productName || '',
+    companyName: report.companyName || '',
+    preparedFor: report.preparedFor || '',
+    categoryLabel: report.categoryLabel || '',
+    roleLabel: report.roleLabel || '',
+    reportDate: report.reportDate || '',
+    reportId: report.reportId || '',
+    regulations: report.regulations || [],
+    evidence: report.evidence || [],
+    risks: report.risks || []
+  });
+}
+
+async function reportHash(report: ReportPayload) {
+  const bytes = new TextEncoder().encode(canonicalReport(report));
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   try {
+    const body = (await request.json()) as { report?: ReportPayload };
+    const report = body.report;
+
+    if (!report?.reportId || !report?.productName) {
+      return json({ error: 'REPORT_PAYLOAD_REQUIRED' }, 400);
+    }
+
     const { base, token } = await getAccessToken(env);
     const price = env.REPORT_PRICE_EUR || '49.00';
     const origin = new URL(request.url).origin;
-
-    let payload: { reportId?: string } = {};
-    try {
-      payload = (await request.json()) as { reportId?: string };
-    } catch {
-      payload = {};
-    }
+    const customId = await reportHash(report);
 
     const response = await fetch(`${base}/v2/checkout/orders`, {
       method: 'POST',
@@ -63,7 +98,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
         intent: 'CAPTURE',
         purchase_units: [
           {
-            reference_id: payload.reportId || 'REGMETRIC-REPORT',
+            reference_id: report.reportId,
+            custom_id: customId,
             description: 'RegMetric Professional Compliance Report PDF',
             amount: {
               currency_code: 'EUR',
@@ -94,13 +130,21 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       return json({ error: 'PAYPAL_ORDER_FAILED', details: data }, 502);
     }
 
-    const approveUrl = data.links?.find((link) => link.rel === 'payer-action' || link.rel === 'approve')?.href;
+    const approveUrl = data.links?.find(
+      (link) => link.rel === 'payer-action' || link.rel === 'approve'
+    )?.href;
 
     if (!approveUrl) {
       return json({ error: 'PAYPAL_APPROVAL_URL_MISSING' }, 502);
     }
 
-    return json({ orderId: data.id, approveUrl, price, currency: 'EUR' });
+    return json({
+      orderId: data.id,
+      approveUrl,
+      price,
+      currency: 'EUR',
+      reportId: report.reportId
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'UNKNOWN_ERROR';
 
