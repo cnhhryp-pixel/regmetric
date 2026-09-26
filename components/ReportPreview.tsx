@@ -173,7 +173,7 @@ export default function ReportPreview() {
       const response = await fetch('/api/paypal/create-order', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ reportId })
+        body: JSON.stringify({ report: pendingReport })
       });
       const result = await response.json();
 
