@@ -90,6 +90,17 @@ export default function ReportPreview() {
   const [downloadMessage, setDownloadMessage] = useState(false);
   const [checkoutState, setCheckoutState] = useState<'idle' | 'loading' | 'error'>('idle');
   const [checkoutError, setCheckoutError] = useState('');
+  const [paymentConfig, setPaymentConfig] = useState<{
+    loading: boolean;
+    configured: boolean;
+    environment: 'sandbox' | 'live';
+    price: string;
+  }>({
+    loading: true,
+    configured: false,
+    environment: 'sandbox',
+    price: '49.00'
+  });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -135,6 +146,31 @@ export default function ReportPreview() {
     if (reportDate) setReportId(buildReportId(productName));
   }, [productName, reportDate]);
 
+  useEffect(() => {
+    const checkPaymentConfig = async () => {
+      try {
+        const response = await fetch('/api/paypal/status', { cache: 'no-store' });
+        const data = await response.json();
+
+        setPaymentConfig({
+          loading: false,
+          configured: Boolean(data.configured),
+          environment: data.environment === 'live' ? 'live' : 'sandbox',
+          price: data.price || '49.00'
+        });
+      } catch {
+        setPaymentConfig({
+          loading: false,
+          configured: false,
+          environment: 'sandbox',
+          price: '49.00'
+        });
+      }
+    };
+
+    checkPaymentConfig();
+  }, []);
+
   const data = useMemo(() => reportData[category], [category]);
   const roleLabel = roleOptions.find((item) => item.value === role)?.label;
   const regulations = useMemo(
@@ -147,6 +183,12 @@ export default function ReportPreview() {
   };
 
   const handlePaidDownload = async () => {
+    if (!paymentConfig.configured) {
+      setCheckoutState('error');
+      setCheckoutError('Paid PDF checkout is not configured on Cloudflare yet.');
+      return;
+    }
+
     setCheckoutState('loading');
     setCheckoutError('');
     setDownloadMessage(false);
@@ -268,16 +310,31 @@ export default function ReportPreview() {
           <button
             className="button button-secondary"
             type="button"
-            disabled={checkoutState === 'loading'}
+            disabled={checkoutState === 'loading' || paymentConfig.loading || !paymentConfig.configured}
             onClick={handlePaidDownload}
           >
-            {checkoutState === 'loading' ? 'Opening PayPal…' : 'Download PDF · €49'}
+            {paymentConfig.loading
+              ? 'Checking PayPal…'
+              : checkoutState === 'loading'
+                ? 'Opening PayPal…'
+                : paymentConfig.configured
+                  ? `Download PDF · €${paymentConfig.price}`
+                  : 'Paid PDF · Setup Required'}
           </button>
         </div>
 
         <div className="report-price-note">
-          <strong>Professional PDF · €49</strong>
-          <span>Watermark-free PDF download after verified PayPal payment. Free browser printing remains available above.</span>
+          <div>
+            <strong>Professional PDF · €{paymentConfig.price}</strong>
+            <span>Watermark-free PDF download after verified PayPal payment. Free browser printing remains available above.</span>
+          </div>
+          <span className={`payment-env-badge ${paymentConfig.configured ? 'ready' : 'not-ready'}`}>
+            {paymentConfig.loading
+              ? 'Checking payment system'
+              : paymentConfig.configured
+                ? `PayPal ${paymentConfig.environment === 'live' ? 'Live' : 'Sandbox'} ready`
+                : 'PayPal setup required'}
+          </span>
         </div>
 
         {checkoutState === 'error' && (
