@@ -160,6 +160,14 @@ export default function Home() {
           <a href="/products/hair-dryer">Hair Dryer <span>→</span></a>
           <a href="/products/portable-fan">Portable Fan <span>→</span></a>
           <a href="/products/kitchen-appliance">Kitchen Appliance <span>→</span></a>
+          <a href="/products/electric-scooter">Electric Scooter <span>→</span></a>
+          <a href="/products/ebike-charger">E-Bike Charger <span>→</span></a>
+          <a href="/products/cordless-drill">Cordless Drill <span>→</span></a>
+          <a href="/products/angle-grinder">Angle Grinder <span>→</span></a>
+          <a href="/products/air-fryer">Air Fryer <span>→</span></a>
+          <a href="/products/electric-kettle">Electric Kettle <span>→</span></a>
+          <a href="/products/desk-lamp">Desk Lamp <span>→</span></a>
+          <a href="/products/smart-bulb">Smart Bulb <span>→</span></a>
           <a href="/products">All Product Guides <span>→</span></a>
         </div>
       </section>
