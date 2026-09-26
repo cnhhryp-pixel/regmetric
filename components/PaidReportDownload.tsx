@@ -143,6 +143,7 @@ export default function PaidReportDownload() {
   const [status, setStatus] = useState<'checking' | 'ready' | 'error'>('checking');
   const [message, setMessage] = useState('Verifying your PayPal payment…');
   const [report, setReport] = useState<PendingReport | null>(null);
+  const [payment, setPayment] = useState<{ orderId: string; amount: string; currency: string } | null>(null);
 
   useEffect(() => {
     const run = async () => {
@@ -175,7 +176,7 @@ export default function PaidReportDownload() {
         const response = await fetch('/api/paypal/capture-order', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ orderId })
+          body: JSON.stringify({ orderId, report: pending })
         });
         const data = await response.json();
 
@@ -184,6 +185,11 @@ export default function PaidReportDownload() {
         }
 
         setReport(pending);
+        setPayment({
+          orderId: data.orderId,
+          amount: data.amount,
+          currency: data.currency
+        });
         setStatus('ready');
         setMessage('Payment verified. Your professional PDF is ready.');
         window.localStorage.setItem(
@@ -214,12 +220,21 @@ export default function PaidReportDownload() {
       <p>{message}</p>
 
       {status === 'ready' && report && (
-        <div className="payment-result-actions">
+        <>
+          {payment && (
+            <div className="payment-verification-grid">
+              <div><span>Payment</span><strong>{payment.currency} {payment.amount}</strong></div>
+              <div><span>Report ID</span><strong>{report.reportId}</strong></div>
+              <div><span>PayPal Order</span><strong>{payment.orderId}</strong></div>
+            </div>
+          )}
+          <div className="payment-result-actions">
           <button className="button button-primary" type="button" onClick={() => generatePdf(report)}>
             Download Professional PDF
           </button>
           <a className="button button-secondary" href="/reports">Back to Reports</a>
-        </div>
+          </div>
+        </>
       )}
 
       {status === 'error' && (
