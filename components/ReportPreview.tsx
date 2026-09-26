@@ -88,6 +88,8 @@ export default function ReportPreview() {
   const [reportDate, setReportDate] = useState('');
   const [reportId, setReportId] = useState('');
   const [downloadMessage, setDownloadMessage] = useState(false);
+  const [checkoutState, setCheckoutState] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [checkoutError, setCheckoutError] = useState('');
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -142,6 +144,53 @@ export default function ReportPreview() {
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handlePaidDownload = async () => {
+    setCheckoutState('loading');
+    setCheckoutError('');
+    setDownloadMessage(false);
+
+    const pendingReport = {
+      productName: productName.trim() || 'Unnamed Product',
+      companyName,
+      preparedFor,
+      categoryLabel: categoryOptions.find((item) => item.value === category)?.label || category,
+      roleLabel: roleLabel || role,
+      reportDate,
+      reportId,
+      regulations,
+      evidence: data.evidence,
+      risks: data.risks
+    };
+
+    window.localStorage.setItem(
+      'regmetric_pending_paid_report',
+      JSON.stringify(pendingReport)
+    );
+
+    try {
+      const response = await fetch('/api/paypal/create-order', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ reportId })
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.approveUrl) {
+        if (result.error === 'PAYPAL_NOT_CONFIGURED') {
+          throw new Error('Paid PDF checkout is not configured yet. Add the PayPal API credentials in Cloudflare Pages settings.');
+        }
+        throw new Error(result.message || result.error || 'Could not start PayPal checkout.');
+      }
+
+      window.location.href = result.approveUrl;
+    } catch (error) {
+      setCheckoutState('error');
+      setCheckoutError(
+        error instanceof Error ? error.message : 'Could not start PayPal checkout.'
+      );
+    }
   };
 
   return (
@@ -219,20 +268,29 @@ export default function ReportPreview() {
           <button
             className="button button-secondary"
             type="button"
-            onClick={() => setDownloadMessage(true)}
+            disabled={checkoutState === 'loading'}
+            onClick={handlePaidDownload}
           >
-            Download PDF · Paid
+            {checkoutState === 'loading' ? 'Opening PayPal…' : 'Download PDF · €49'}
           </button>
         </div>
 
+        <div className="report-price-note">
+          <strong>Professional PDF · €49</strong>
+          <span>Watermark-free PDF download after verified PayPal payment. Free browser printing remains available above.</span>
+        </div>
+
+        {checkoutState === 'error' && (
+          <div className="paid-download-note">
+            <strong>Checkout could not start.</strong>
+            <span>{checkoutError}</span>
+          </div>
+        )}
+
         {downloadMessage && (
           <div className="paid-download-note">
-            <strong>Paid PDF download interface is reserved.</strong>
-            <span>
-              The report is already structured for direct PDF export. Payment
-              verification and unlocked download will be connected in the next
-              payment step.
-            </span>
+            <strong>Professional PDF</strong>
+            <span>Payment is verified server-side before the PDF download is unlocked.</span>
           </div>
         )}
 
