@@ -12,6 +12,9 @@ type Category =
 
 type Role = 'manufacturer' | 'importer' | 'distributor';
 
+const PAYPAL_PAYMENT_LINK = 'https://www.paypal.com/ncp/payment/HJHHHNVMFJ6XE';
+const REPORT_PRICE = '49.00';
+
 const categoryOptions: { value: Category; label: string }[] = [
   { value: 'electronics', label: 'Electronics / Electrical Products' },
   { value: 'toys', label: 'Toys / Children’s Products' },
@@ -87,22 +90,7 @@ export default function ReportPreview() {
   const [connected, setConnected] = useState(false);
   const [reportDate, setReportDate] = useState('');
   const [reportId, setReportId] = useState('');
-  const [downloadMessage, setDownloadMessage] = useState(false);
-  const [checkoutState, setCheckoutState] = useState<'idle' | 'loading' | 'error'>('idle');
-  const [checkoutError, setCheckoutError] = useState('');
-  const [paymentConfig, setPaymentConfig] = useState<{
-    loading: boolean;
-    configured: boolean;
-    credentialsValid: boolean;
-    environment: 'sandbox' | 'live';
-    price: string;
-  }>({
-    loading: true,
-    configured: false,
-    credentialsValid: false,
-    environment: 'sandbox',
-    price: '49.00'
-  });
+  const [paymentOpened, setPaymentOpened] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -111,7 +99,6 @@ export default function ReportPreview() {
     const requestedRole = params.get('role');
     const regulations = params.get('regulations');
     const source = params.get('source');
-
     const initialProduct = product || 'Bluetooth Speaker';
 
     if (product) setProductName(product);
@@ -148,33 +135,6 @@ export default function ReportPreview() {
     if (reportDate) setReportId(buildReportId(productName));
   }, [productName, reportDate]);
 
-  useEffect(() => {
-    const checkPaymentConfig = async () => {
-      try {
-        const response = await fetch('/api/paypal/status', { cache: 'no-store' });
-        const data = await response.json();
-
-        setPaymentConfig({
-          loading: false,
-          configured: Boolean(data.configured),
-          credentialsValid: Boolean(data.credentialsValid),
-          environment: data.environment === 'live' ? 'live' : 'sandbox',
-          price: data.price || '49.00'
-        });
-      } catch {
-        setPaymentConfig({
-          loading: false,
-          configured: false,
-          credentialsValid: false,
-          environment: 'sandbox',
-          price: '49.00'
-        });
-      }
-    };
-
-    checkPaymentConfig();
-  }, []);
-
   const data = useMemo(() => reportData[category], [category]);
   const roleLabel = roleOptions.find((item) => item.value === role)?.label;
   const regulations = useMemo(
@@ -182,27 +142,7 @@ export default function ReportPreview() {
     [assessmentRegulations, data]
   );
 
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const handlePaidDownload = async () => {
-    if (!paymentConfig.configured) {
-      setCheckoutState('error');
-      setCheckoutError('Paid PDF checkout is not configured on Cloudflare yet.');
-      return;
-    }
-
-    if (!paymentConfig.credentialsValid) {
-      setCheckoutState('error');
-      setCheckoutError('PayPal credentials are present but could not be authenticated. Check the Client ID, Client Secret and Sandbox/Live mode.');
-      return;
-    }
-
-    setCheckoutState('loading');
-    setCheckoutError('');
-    setDownloadMessage(false);
-
+  const savePendingReport = () => {
     const pendingReport = {
       productName: productName.trim() || 'Unnamed Product',
       companyName,
@@ -213,36 +153,39 @@ export default function ReportPreview() {
       reportId,
       regulations,
       evidence: data.evidence,
-      risks: data.risks
+      risks: data.risks,
+      expectedAmount: REPORT_PRICE,
+      currency: 'EUR',
+      paymentLink: PAYPAL_PAYMENT_LINK
     };
 
     window.localStorage.setItem(
       'regmetric_pending_paid_report',
       JSON.stringify(pendingReport)
     );
+  };
 
-    try {
-      const response = await fetch('/api/paypal/create-order', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ report: pendingReport })
-      });
-      const result = await response.json();
+  const handlePrint = () => {
+    window.print();
+  };
 
-      if (!response.ok || !result.approveUrl) {
-        if (result.error === 'PAYPAL_NOT_CONFIGURED') {
-          throw new Error('Paid PDF checkout is not configured yet. Add the PayPal API credentials in Cloudflare Pages settings.');
-        }
-        throw new Error(result.message || result.error || 'Could not start PayPal checkout.');
-      }
+  const handlePayPalLink = () => {
+    savePendingReport();
+    setPaymentOpened(true);
+    const paymentWindow = window.open(
+      PAYPAL_PAYMENT_LINK,
+      '_blank',
+      'noopener,noreferrer'
+    );
 
-      window.location.href = result.approveUrl;
-    } catch (error) {
-      setCheckoutState('error');
-      setCheckoutError(
-        error instanceof Error ? error.message : 'Could not start PayPal checkout.'
-      );
+    if (!paymentWindow) {
+      window.location.href = PAYPAL_PAYMENT_LINK;
     }
+  };
+
+  const handleVerification = () => {
+    savePendingReport();
+    window.location.href = '/payment-verification/';
   };
 
   return (
@@ -317,59 +260,46 @@ export default function ReportPreview() {
           <button className="button button-primary" type="button" onClick={handlePrint}>
             Print Free
           </button>
-          <button
-            className="button button-secondary"
-            type="button"
-            disabled={checkoutState === 'loading' || paymentConfig.loading || !paymentConfig.configured || !paymentConfig.credentialsValid}
-            onClick={handlePaidDownload}
-          >
-            {paymentConfig.loading
-              ? 'Checking PayPal…'
-              : checkoutState === 'loading'
-                ? 'Opening PayPal…'
-                : paymentConfig.configured && paymentConfig.credentialsValid
-                  ? `Download PDF · €${paymentConfig.price}`
-                  : paymentConfig.configured
-                    ? 'PayPal Credentials Invalid'
-                    : 'Paid PDF · Setup Required'}
+          <button className="button button-secondary" type="button" onClick={handlePayPalLink}>
+            Pay €49 with PayPal
           </button>
         </div>
 
         <div className="report-price-note">
           <div>
-            <strong>Professional PDF · €{paymentConfig.price}</strong>
-            <span>Watermark-free PDF download after verified PayPal payment. Free browser printing remains available above.</span>
+            <strong>Professional PDF · €49</strong>
+            <span>
+              Pay through the RegMetric PayPal Payment Link, then submit your
+              PayPal Transaction ID and payer email for manual verification.
+            </span>
           </div>
-          <span className={`payment-env-badge ${
-            paymentConfig.configured && paymentConfig.credentialsValid ? 'ready' : 'not-ready'
-          }`}>
-            {paymentConfig.loading
-              ? 'Checking payment system'
-              : paymentConfig.configured && paymentConfig.credentialsValid
-                ? `PayPal ${paymentConfig.environment === 'live' ? 'Live' : 'Sandbox'} verified`
-                : paymentConfig.configured
-                  ? 'PayPal credentials rejected'
-                  : 'PayPal setup required'}
-          </span>
+          <span className="payment-env-badge ready">Direct PayPal payment</span>
         </div>
 
-        {checkoutState === 'error' && (
-          <div className="paid-download-note">
-            <strong>Checkout could not start.</strong>
-            <span>{checkoutError}</span>
-          </div>
-        )}
-
-        {downloadMessage && (
-          <div className="paid-download-note">
-            <strong>Professional PDF</strong>
-            <span>Payment is verified server-side before the PDF download is unlocked.</span>
+        {paymentOpened && (
+          <div className="paid-download-note payment-next-step">
+            <div>
+              <strong>Finished paying in PayPal?</strong>
+              <span>
+                Keep the PayPal Transaction ID from your receipt and continue to
+                verification.
+              </span>
+            </div>
+            <button
+              className="button button-primary"
+              type="button"
+              onClick={handleVerification}
+            >
+              I’ve Paid · Verify Payment
+            </button>
           </div>
         )}
 
         <div className="report-control-actions">
           <a className="text-link" href="/assessment">← Back to Assessment</a>
-          <span>Preview updates automatically.</span>
+          <button className="text-link link-button" type="button" onClick={handleVerification}>
+            Already paid? Verify payment →
+          </button>
         </div>
       </div>
 
