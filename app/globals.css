@@ -58,14 +58,33 @@ a { text-decoration: none; color: inherit; }
 }
 
 .brand-mark {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
   border-radius: 10px;
   background: var(--ink);
   color: white;
-  font-size: 16px;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, .14);
+  overflow: hidden;
+}
+
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.brand-mark-dot {
+  fill: #4f7cff;
+}
+
+.brand-mark-check {
+  fill: none;
+  stroke: white;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .nav-links {
