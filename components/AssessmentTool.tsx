@@ -422,6 +422,14 @@ export default function AssessmentTool() {
       'Verify markings, instructions, traceability and obvious compliance issues before making the product available.'
   }[role];
 
+  const reportHref = '/reports?' + new URLSearchParams({
+    product: productName.trim() || data.label,
+    category,
+    role,
+    regulations: assessment.regulations.map((item) => item.name).join('|'),
+    source: 'assessment'
+  }).toString();
+
   return (
     <div className="assessment-tool">
       <div className="assessment-form card">
@@ -554,7 +562,7 @@ export default function AssessmentTool() {
             <div className="card">
               <h3>Role-specific focus</h3>
               <p>{roleAction}</p>
-              <a className="text-link" href="/reports">See report workflow →</a>
+              <a className="text-link" href={reportHref}>Open connected report →</a>
             </div>
           </div>
 
@@ -563,6 +571,20 @@ export default function AssessmentTool() {
             <ol>
               {assessment.actions.map((action) => <li key={action}>{action}</li>)}
             </ol>
+          </div>
+
+          <div className="assessment-report-cta">
+            <div>
+              <span className="eyebrow">Next step</span>
+              <h3>Carry this assessment into a compliance report.</h3>
+              <p>
+                Product name, category, supply-chain role and identified
+                regulatory areas will be transferred automatically.
+              </p>
+            </div>
+            <a className="button button-primary" href={reportHref}>
+              Build Report Preview
+            </a>
           </div>
 
           <div className="assessment-note">
