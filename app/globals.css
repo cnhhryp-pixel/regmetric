@@ -1275,3 +1275,89 @@ a { text-decoration: none; color: inherit; }
     align-items: flex-start;
   }
 }
+
+
+/* Smarter assessment signal detection */
+.detected-signals {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid #dfe6f1;
+  border-radius: 12px;
+  background: #fbfcfe;
+}
+
+.signal-label {
+  display: block;
+  margin-bottom: 9px;
+  color: #617086;
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.detected-signals > div,
+.signal-summary-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.signal-chip,
+.signal-summary-chips span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #edf2ff;
+  color: #2449a8;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.signal-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 20px;
+  border: 1px solid #dfe7fb;
+  border-radius: 14px;
+  background: #f8faff;
+}
+
+.signal-summary strong {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.signal-summary p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.result-regulation > span:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.result-regulation strong {
+  color: var(--ink);
+}
+
+.result-regulation small {
+  display: block;
+  color: #748198;
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .signal-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
