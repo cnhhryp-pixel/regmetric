@@ -110,10 +110,58 @@ const guides = [
     tags: 'LVD · EMC · RoHS · REACH · WEEE'
   },
   {
+    name: 'Air Fryer',
+    href: '/products/air-fryer',
+    text: 'High-power countertop cooking appliances with heating and airflow.',
+    tags: 'LVD · EMC · RoHS · REACH · Food Contact'
+  },
+  {
+    name: 'Electric Kettle',
+    href: '/products/electric-kettle',
+    text: 'Electric boiling appliances with heating and food-contact components.',
+    tags: 'LVD · EMC · RoHS · REACH · Food Contact'
+  },
+  {
+    name: 'Desk Lamp',
+    href: '/products/desk-lamp',
+    text: 'LED desk lamps with integrated drivers, dimming or USB power.',
+    tags: 'LVD · EMC · RoHS · WEEE · Ecodesign'
+  },
+  {
+    name: 'Smart Bulb',
+    href: '/products/smart-bulb',
+    text: 'Wi-Fi, Bluetooth or Zigbee connected LED light sources.',
+    tags: 'RED · RoHS · REACH · WEEE · Energy Labelling'
+  },
+  {
     name: 'Electric Power Tool',
     href: '/products/electric-power-tool',
     text: 'Corded and cordless drills, grinders, saws and other power tools.',
     tags: 'Machinery · EMC · RoHS · Batteries · WEEE'
+  },
+  {
+    name: 'Cordless Drill',
+    href: '/products/cordless-drill',
+    text: 'Battery-powered drills with removable packs and chargers.',
+    tags: 'Machinery · Batteries · EMC · RoHS · WEEE'
+  },
+  {
+    name: 'Angle Grinder',
+    href: '/products/angle-grinder',
+    text: 'Corded and cordless grinders with high-speed rotating tools.',
+    tags: 'Machinery · EMC · RoHS · Batteries · WEEE'
+  },
+  {
+    name: 'Electric Scooter',
+    href: '/products/electric-scooter',
+    text: 'Battery-powered personal mobility products with motors and chargers.',
+    tags: 'Machinery · Batteries · EMC · RoHS · REACH'
+  },
+  {
+    name: 'E-Bike Charger',
+    href: '/products/ebike-charger',
+    text: 'Battery chargers designed for e-bike battery packs.',
+    tags: 'LVD · EMC · RoHS · REACH · WEEE'
   },
   {
     name: 'Toys',
