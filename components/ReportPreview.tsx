@@ -93,11 +93,13 @@ export default function ReportPreview() {
   const [paymentConfig, setPaymentConfig] = useState<{
     loading: boolean;
     configured: boolean;
+    credentialsValid: boolean;
     environment: 'sandbox' | 'live';
     price: string;
   }>({
     loading: true,
     configured: false,
+    credentialsValid: false,
     environment: 'sandbox',
     price: '49.00'
   });
@@ -155,6 +157,7 @@ export default function ReportPreview() {
         setPaymentConfig({
           loading: false,
           configured: Boolean(data.configured),
+          credentialsValid: Boolean(data.credentialsValid),
           environment: data.environment === 'live' ? 'live' : 'sandbox',
           price: data.price || '49.00'
         });
@@ -162,6 +165,7 @@ export default function ReportPreview() {
         setPaymentConfig({
           loading: false,
           configured: false,
+          credentialsValid: false,
           environment: 'sandbox',
           price: '49.00'
         });
@@ -186,6 +190,12 @@ export default function ReportPreview() {
     if (!paymentConfig.configured) {
       setCheckoutState('error');
       setCheckoutError('Paid PDF checkout is not configured on Cloudflare yet.');
+      return;
+    }
+
+    if (!paymentConfig.credentialsValid) {
+      setCheckoutState('error');
+      setCheckoutError('PayPal credentials are present but could not be authenticated. Check the Client ID, Client Secret and Sandbox/Live mode.');
       return;
     }
 
@@ -310,16 +320,18 @@ export default function ReportPreview() {
           <button
             className="button button-secondary"
             type="button"
-            disabled={checkoutState === 'loading' || paymentConfig.loading || !paymentConfig.configured}
+            disabled={checkoutState === 'loading' || paymentConfig.loading || !paymentConfig.configured || !paymentConfig.credentialsValid}
             onClick={handlePaidDownload}
           >
             {paymentConfig.loading
               ? 'Checking PayPal…'
               : checkoutState === 'loading'
                 ? 'Opening PayPal…'
-                : paymentConfig.configured
+                : paymentConfig.configured && paymentConfig.credentialsValid
                   ? `Download PDF · €${paymentConfig.price}`
-                  : 'Paid PDF · Setup Required'}
+                  : paymentConfig.configured
+                    ? 'PayPal Credentials Invalid'
+                    : 'Paid PDF · Setup Required'}
           </button>
         </div>
 
@@ -328,12 +340,16 @@ export default function ReportPreview() {
             <strong>Professional PDF · €{paymentConfig.price}</strong>
             <span>Watermark-free PDF download after verified PayPal payment. Free browser printing remains available above.</span>
           </div>
-          <span className={`payment-env-badge ${paymentConfig.configured ? 'ready' : 'not-ready'}`}>
+          <span className={`payment-env-badge ${
+            paymentConfig.configured && paymentConfig.credentialsValid ? 'ready' : 'not-ready'
+          }`}>
             {paymentConfig.loading
               ? 'Checking payment system'
-              : paymentConfig.configured
-                ? `PayPal ${paymentConfig.environment === 'live' ? 'Live' : 'Sandbox'} ready`
-                : 'PayPal setup required'}
+              : paymentConfig.configured && paymentConfig.credentialsValid
+                ? `PayPal ${paymentConfig.environment === 'live' ? 'Live' : 'Sandbox'} verified`
+                : paymentConfig.configured
+                  ? 'PayPal credentials rejected'
+                  : 'PayPal setup required'}
           </span>
         </div>
 
