@@ -68,12 +68,26 @@ function dedupe(items: string[]) {
   return Array.from(new Set(items.filter(Boolean)));
 }
 
+function buildReportId(product: string) {
+  const clean = product.toUpperCase().replace(/[^A-Z0-9]+/g, '').slice(0, 5) || 'REPORT';
+  const date = new Date();
+  const y = date.getFullYear().toString().slice(-2);
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `RM-${clean}-${y}${m}${d}`;
+}
+
 export default function ReportPreview() {
   const [category, setCategory] = useState<Category>('electronics');
   const [role, setRole] = useState<Role>('manufacturer');
   const [productName, setProductName] = useState('Bluetooth Speaker');
+  const [companyName, setCompanyName] = useState('');
+  const [preparedFor, setPreparedFor] = useState('');
   const [assessmentRegulations, setAssessmentRegulations] = useState<string[]>([]);
   const [connected, setConnected] = useState(false);
+  const [reportDate, setReportDate] = useState('');
+  const [reportId, setReportId] = useState('');
+  const [downloadMessage, setDownloadMessage] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -82,6 +96,8 @@ export default function ReportPreview() {
     const requestedRole = params.get('role');
     const regulations = params.get('regulations');
     const source = params.get('source');
+
+    const initialProduct = product || 'Bluetooth Speaker';
 
     if (product) setProductName(product);
 
@@ -103,7 +119,19 @@ export default function ReportPreview() {
     }
 
     if (source === 'assessment') setConnected(true);
+
+    const now = new Date();
+    setReportDate(now.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }));
+    setReportId(buildReportId(initialProduct));
   }, []);
+
+  useEffect(() => {
+    if (reportDate) setReportId(buildReportId(productName));
+  }, [productName, reportDate]);
 
   const data = useMemo(() => reportData[category], [category]);
   const roleLabel = roleOptions.find((item) => item.value === role)?.label;
@@ -112,9 +140,13 @@ export default function ReportPreview() {
     [assessmentRegulations, data]
   );
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="report-builder">
-      <div className="report-controls card">
+      <div className="report-controls card no-print">
         {connected && (
           <div className="prefill-note">
             <strong>Assessment connected.</strong>
@@ -130,6 +162,26 @@ export default function ReportPreview() {
               value={productName}
               onChange={(event) => setProductName(event.target.value)}
               placeholder="e.g. Bluetooth speaker"
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="report-company">Company / organization</label>
+            <input
+              id="report-company"
+              value={companyName}
+              onChange={(event) => setCompanyName(event.target.value)}
+              placeholder="e.g. Example Trading Ltd."
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="report-client">Prepared for</label>
+            <input
+              id="report-client"
+              value={preparedFor}
+              onChange={(event) => setPreparedFor(event.target.value)}
+              placeholder="Client, team or contact"
             />
           </div>
 
@@ -160,13 +212,54 @@ export default function ReportPreview() {
           </div>
         </div>
 
+        <div className="report-action-grid">
+          <button className="button button-primary" type="button" onClick={handlePrint}>
+            Print Free
+          </button>
+          <button
+            className="button button-secondary"
+            type="button"
+            onClick={() => setDownloadMessage(true)}
+          >
+            Download PDF · Paid
+          </button>
+        </div>
+
+        {downloadMessage && (
+          <div className="paid-download-note">
+            <strong>Paid PDF download interface is reserved.</strong>
+            <span>
+              The report is already structured for direct PDF export. Payment
+              verification and unlocked download will be connected in the next
+              payment step.
+            </span>
+          </div>
+        )}
+
         <div className="report-control-actions">
           <a className="text-link" href="/assessment">← Back to Assessment</a>
           <span>Preview updates automatically.</span>
         </div>
       </div>
 
-      <div className="report-preview">
+      <div className="report-preview printable-report">
+        <div className="print-watermark">REGMETRIC · FREE PRINT · PRELIMINARY</div>
+
+        <div className="report-document-head">
+          <div className="report-brand">
+            <span className="brand-mark">R</span>
+            <div>
+              <strong>RegMetric</strong>
+              <small>Product Compliance Intelligence</small>
+            </div>
+          </div>
+
+          <div className="report-meta">
+            <div><span>Report ID</span><strong>{reportId || 'Generating…'}</strong></div>
+            <div><span>Date</span><strong>{reportDate || '—'}</strong></div>
+          </div>
+        </div>
+
         <div className="report-preview-header">
           <div>
             <span className="card-badge">{connected ? 'Assessment Report Preview' : 'Sample Report Preview'}</span>
@@ -175,6 +268,19 @@ export default function ReportPreview() {
           </div>
           <span className="report-status">Preliminary</span>
         </div>
+
+        {(companyName || preparedFor) && (
+          <div className="report-party-grid">
+            <div>
+              <span>Company / Organization</span>
+              <strong>{companyName || '—'}</strong>
+            </div>
+            <div>
+              <span>Prepared For</span>
+              <strong>{preparedFor || '—'}</strong>
+            </div>
+          </div>
+        )}
 
         <div className="report-section">
           <span>01</span>
@@ -232,8 +338,8 @@ export default function ReportPreview() {
         </div>
 
         <div className="report-disclaimer">
-          Preview only. Final applicability depends on the exact product,
-          intended use, technical characteristics and applicable law.
+          Preliminary research report generated by RegMetric. This document does
+          not constitute legal advice or a final conformity determination.
         </div>
       </div>
     </div>
