@@ -1775,3 +1775,9 @@ a { text-decoration: none; color: inherit; }
     width: fit-content;
   }
 }
+
+
+/* Payment credential verification states */
+.payment-env-badge.not-ready {
+  border: 1px solid rgba(128, 86, 0, .12);
+}
