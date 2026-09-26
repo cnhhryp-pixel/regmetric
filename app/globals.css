@@ -1731,3 +1731,47 @@ a { text-decoration: none; color: inherit; }
     grid-template-columns: 1fr;
   }
 }
+
+
+/* PayPal configuration readiness */
+.report-price-note {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.report-price-note > div {
+  display: grid;
+  gap: 3px;
+}
+
+.payment-env-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.payment-env-badge.ready {
+  background: #eaf8f2;
+  color: #12664f;
+}
+
+.payment-env-badge.not-ready {
+  background: #fff4dc;
+  color: #805600;
+}
+
+@media (max-width: 700px) {
+  .report-price-note {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-env-badge {
+    width: fit-content;
+  }
+}
