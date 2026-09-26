@@ -1,14 +1,23 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-type Category = 'electronics' | 'toys' | 'machinery' | 'consumer-products';
+type Category =
+  | 'electronics'
+  | 'toys'
+  | 'machinery'
+  | 'automotive'
+  | 'medical-devices'
+  | 'consumer-products';
+
 type Role = 'manufacturer' | 'importer' | 'distributor';
 
 const categoryOptions: { value: Category; label: string }[] = [
   { value: 'electronics', label: 'Electronics / Electrical Products' },
   { value: 'toys', label: 'Toys / Children’s Products' },
   { value: 'machinery', label: 'Machinery / Industrial Equipment' },
+  { value: 'automotive', label: 'Automotive Parts / Components' },
+  { value: 'medical-devices', label: 'Medical / Healthcare Products' },
   { value: 'consumer-products', label: 'General Consumer Products' }
 ];
 
@@ -34,9 +43,19 @@ const reportData: Record<Category, {
     risks: ['Incorrect age classification', 'Incomplete safety testing', 'Material-information gaps']
   },
   machinery: {
-    regulations: ['CE Marking', 'Machinery-specific requirements', 'REACH'],
+    regulations: ['CE Marking', 'Machinery framework', 'REACH'],
     evidence: ['Risk assessment', 'Drawings and schematics', 'Safety-function evidence', 'Instructions'],
     risks: ['Incomplete hazard analysis', 'Missing conformity evidence', 'Weak technical-file structure']
+  },
+  automotive: {
+    regulations: ['REACH', 'Material requirements', 'Sector-specific vehicle rules'],
+    evidence: ['Component specification', 'Material declarations', 'Supplier approvals', 'Traceability records'],
+    risks: ['Incorrect component classification', 'Missing material evidence', 'Customer or approval requirements overlooked']
+  },
+  'medical-devices': {
+    regulations: ['Medical-device-specific requirements', 'REACH', 'Product and material safety'],
+    evidence: ['Intended-purpose statement', 'Classification rationale', 'Risk-management records', 'Technical documentation'],
+    risks: ['Incorrect classification', 'Insufficient clinical or performance evidence', 'Incomplete quality-system planning']
   },
   'consumer-products': {
     regulations: ['GPSR', 'REACH', 'Product-specific requirements'],
@@ -45,17 +64,64 @@ const reportData: Record<Category, {
   }
 };
 
+function dedupe(items: string[]) {
+  return Array.from(new Set(items.filter(Boolean)));
+}
+
 export default function ReportPreview() {
   const [category, setCategory] = useState<Category>('electronics');
   const [role, setRole] = useState<Role>('manufacturer');
   const [productName, setProductName] = useState('Bluetooth Speaker');
+  const [assessmentRegulations, setAssessmentRegulations] = useState<string[]>([]);
+  const [connected, setConnected] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get('product');
+    const requestedCategory = params.get('category');
+    const requestedRole = params.get('role');
+    const regulations = params.get('regulations');
+    const source = params.get('source');
+
+    if (product) setProductName(product);
+
+    if (requestedCategory && categoryOptions.some((item) => item.value === requestedCategory)) {
+      setCategory(requestedCategory as Category);
+    }
+
+    if (requestedRole && roleOptions.some((item) => item.value === requestedRole)) {
+      setRole(requestedRole as Role);
+    }
+
+    if (regulations) {
+      setAssessmentRegulations(
+        regulations
+          .split('|')
+          .map((item) => item.trim())
+          .filter(Boolean)
+      );
+    }
+
+    if (source === 'assessment') setConnected(true);
+  }, []);
 
   const data = useMemo(() => reportData[category], [category]);
   const roleLabel = roleOptions.find((item) => item.value === role)?.label;
+  const regulations = useMemo(
+    () => dedupe([...assessmentRegulations, ...data.regulations]),
+    [assessmentRegulations, data]
+  );
 
   return (
     <div className="report-builder">
       <div className="report-controls card">
+        {connected && (
+          <div className="prefill-note">
+            <strong>Assessment connected.</strong>
+            <span> Product context and identified regulatory areas were transferred into this report preview.</span>
+          </div>
+        )}
+
         <div className="form-grid">
           <div className="field field-wide">
             <label htmlFor="report-product">Product name</label>
@@ -93,12 +159,17 @@ export default function ReportPreview() {
             </select>
           </div>
         </div>
+
+        <div className="report-control-actions">
+          <a className="text-link" href="/assessment">← Back to Assessment</a>
+          <span>Preview updates automatically.</span>
+        </div>
       </div>
 
       <div className="report-preview">
         <div className="report-preview-header">
           <div>
-            <span className="card-badge">Sample Report Preview</span>
+            <span className="card-badge">{connected ? 'Assessment Report Preview' : 'Sample Report Preview'}</span>
             <h2>{productName.trim() || 'Unnamed Product'}</h2>
             <p>{categoryOptions.find((item) => item.value === category)?.label} · EU Market · {roleLabel}</p>
           </div>
@@ -110,8 +181,9 @@ export default function ReportPreview() {
           <div>
             <h3>Executive Summary</h3>
             <p>
-              Preliminary review identifies several compliance areas that should
-              be verified against the final product specification and intended use.
+              Preliminary review identifies {regulations.length} compliance areas
+              that should be verified against the final product specification,
+              intended use and market-entry model.
             </p>
           </div>
         </div>
@@ -121,7 +193,7 @@ export default function ReportPreview() {
           <div>
             <h3>Regulatory Areas</h3>
             <div className="tags">
-              {data.regulations.map((item) => <span key={item}>{item}</span>)}
+              {regulations.map((item) => <span key={item}>{item}</span>)}
             </div>
           </div>
         </div>
@@ -142,6 +214,19 @@ export default function ReportPreview() {
             <h3>Potential Gaps</h3>
             <ul className="report-list">
               {data.risks.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+
+        <div className="report-section">
+          <span>05</span>
+          <div>
+            <h3>Recommended Follow-Up</h3>
+            <ul className="report-list">
+              <li>Confirm the exact legal scope against final product specifications.</li>
+              <li>Map each requirement to current technical and supplier evidence.</li>
+              <li>Record missing evidence, owners and target completion dates.</li>
+              <li>Review labels, declarations and market-specific registrations before launch.</li>
             </ul>
           </div>
         </div>
