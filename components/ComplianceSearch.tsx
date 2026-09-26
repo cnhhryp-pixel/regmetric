@@ -302,12 +302,84 @@ const items: SearchItem[] = [
     priority: 9
   },
   {
+    title: 'Air Fryer EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for air fryers, thermal controls and food-contact components.',
+    href: '/products/air-fryer',
+    keywords: ['air fryer', 'airfryer', 'countertop fryer', 'kitchen appliance'],
+    aliases: ['air fryer compliance'],
+    priority: 10
+  },
+  {
+    title: 'Electric Kettle EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for electric kettles, heating controls and food-contact materials.',
+    href: '/products/electric-kettle',
+    keywords: ['electric kettle', 'kettle', 'water boiler', 'hot water kettle'],
+    aliases: ['electric kettle compliance'],
+    priority: 10
+  },
+  {
+    title: 'Desk Lamp EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for desk lamps, LED drivers and light sources.',
+    href: '/products/desk-lamp',
+    keywords: ['desk lamp', 'table lamp', 'led desk lamp', 'reading lamp'],
+    aliases: ['desk lamp compliance'],
+    priority: 9
+  },
+  {
+    title: 'Smart Bulb EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for Wi-Fi, Bluetooth and Zigbee smart bulbs.',
+    href: '/products/smart-bulb',
+    keywords: ['smart bulb', 'wifi bulb', 'bluetooth bulb', 'zigbee bulb', 'smart light'],
+    aliases: ['smart bulb compliance'],
+    priority: 10
+  },
+  {
     title: 'Electric Power Tool EU Compliance',
     type: 'Product Guide',
     description: 'EU compliance research for drills, grinders, saws and other electric power tools.',
     href: '/products/electric-power-tool',
     keywords: ['power tool', 'electric drill', 'cordless drill', 'angle grinder', 'electric saw'],
     aliases: ['power tool compliance', 'electric tool compliance'],
+    priority: 10
+  },
+  {
+    title: 'Cordless Drill EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for cordless drills, battery packs and chargers.',
+    href: '/products/cordless-drill',
+    keywords: ['cordless drill', 'battery drill', 'electric drill', 'power drill'],
+    aliases: ['cordless drill compliance'],
+    priority: 10
+  },
+  {
+    title: 'Angle Grinder EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for corded and cordless angle grinders.',
+    href: '/products/angle-grinder',
+    keywords: ['angle grinder', 'grinder', 'cordless grinder', 'power grinder'],
+    aliases: ['angle grinder compliance'],
+    priority: 10
+  },
+  {
+    title: 'Electric Scooter EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for electric scooters, batteries, motors and chargers.',
+    href: '/products/electric-scooter',
+    keywords: ['electric scooter', 'e scooter', 'escooter', 'mobility scooter'],
+    aliases: ['electric scooter compliance', 'e scooter compliance'],
+    priority: 10
+  },
+  {
+    title: 'E-Bike Charger EU Compliance',
+    type: 'Product Guide',
+    description: 'EU compliance research for e-bike battery chargers.',
+    href: '/products/ebike-charger',
+    keywords: ['ebike charger', 'e bike charger', 'electric bicycle charger', 'battery charger'],
+    aliases: ['ebike charger compliance', 'e-bike charger compliance'],
     priority: 10
   },
   {
@@ -348,7 +420,7 @@ const items: SearchItem[] = [
   }
 ];
 
-const quickSearches = ['Smart plug', 'Wi-Fi camera', 'Power tool', 'Hair dryer', 'Portable fan', 'Kitchen appliance', 'USB charger', 'RED'];
+const quickSearches = ['Electric scooter', 'E-bike charger', 'Cordless drill', 'Angle grinder', 'Air fryer', 'Electric kettle', 'Smart bulb', 'Desk lamp'];
 
 function normalize(value: string) {
   return value
