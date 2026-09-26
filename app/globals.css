@@ -1632,3 +1632,28 @@ a { text-decoration: none; color: inherit; }
     text-decoration: none !important;
   }
 }
+
+
+/* Paid PDF checkout */
+.report-price-note {
+  display: grid;
+  gap: 3px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid #dce5f5;
+  border-radius: 11px;
+  background: #f7f9ff;
+  color: #53627a;
+  font-size: 12px;
+}
+
+.report-price-note strong {
+  color: #1e3a8a;
+  font-size: 13px;
+}
+
+.report-action-grid button:disabled {
+  opacity: .65;
+  cursor: wait;
+  transform: none !important;
+}
