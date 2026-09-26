@@ -1,5 +1,6 @@
 import ReportPreview from '../../components/ReportPreview';
 import { BreadcrumbSchema } from '../../components/SeoSchemas';
+import ReportPaymentStatus from '../../components/ReportPaymentStatus';
 
 export const metadata = {
   title: 'Product Compliance Reports',
@@ -36,6 +37,7 @@ export default function ReportsPage() {
       </section>
 
       <section className="section container">
+        <ReportPaymentStatus />
         <div className="section-heading">
           <div>
             <span className="eyebrow">Interactive preview</span>
