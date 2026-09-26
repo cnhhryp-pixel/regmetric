@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 type Category =
   | 'electronics'
@@ -125,6 +125,29 @@ export default function AssessmentTool() {
   const [role, setRole] = useState<Role>('manufacturer');
   const [productName, setProductName] = useState('');
   const [generated, setGenerated] = useState(false);
+  const [prefilled, setPrefilled] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get('product');
+    const requestedCategory = params.get('category');
+    const requestedRole = params.get('role');
+
+    if (product) {
+      setProductName(product);
+      setPrefilled(true);
+    }
+
+    if (requestedCategory && requestedCategory in categoryData) {
+      setCategory(requestedCategory as Category);
+      setPrefilled(true);
+    }
+
+    if (requestedRole && roleOptions.some((item) => item.value === requestedRole)) {
+      setRole(requestedRole as Role);
+      setPrefilled(true);
+    }
+  }, []);
 
   const data = useMemo(() => categoryData[category], [category]);
 
@@ -140,6 +163,13 @@ export default function AssessmentTool() {
   return (
     <div className="assessment-tool">
       <div className="assessment-form card">
+        {prefilled && (
+          <div className="prefill-note">
+            <strong>Product guide connected.</strong>
+            <span> We carried the product context into this assessment. Review or edit any field before generating the result.</span>
+          </div>
+        )}
+
         <div className="form-grid">
           <div className="field field-wide">
             <label htmlFor="product-name">Product name or short description</label>
