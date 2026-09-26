@@ -1781,3 +1781,141 @@ a { text-decoration: none; color: inherit; }
 .payment-env-badge.not-ready {
   border: 1px solid rgba(128, 86, 0, .12);
 }
+
+
+/* Direct PayPal Payment Link + manual verification */
+.payment-next-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.payment-next-step > div {
+  display: grid;
+  gap: 3px;
+}
+
+.link-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.manual-payment-card {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 18px 50px rgba(26, 39, 67, .07);
+}
+
+.verification-report-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.verification-report-summary > div {
+  display: grid;
+  gap: 3px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fbfcfe;
+}
+
+.verification-report-summary span {
+  color: #7a8798;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.verification-steps {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.verification-steps > div {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.verification-steps > div > span {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #edf2ff;
+  color: #2449a8;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.verification-steps p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.verification-pay-button {
+  width: fit-content;
+  margin-bottom: 22px;
+}
+
+.verification-form {
+  margin-top: 12px;
+}
+
+.verification-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.verification-actions button {
+  cursor: pointer;
+  font: inherit;
+}
+
+.verification-error {
+  margin-top: 14px;
+  padding: 11px 13px;
+  border: 1px solid #f1caca;
+  border-radius: 10px;
+  background: #fff5f5;
+  color: #9b2c2c;
+  font-size: 13px;
+}
+
+.manual-verification-note {
+  display: grid;
+  gap: 3px;
+  margin-top: 20px;
+  padding: 13px 14px;
+  border-radius: 11px;
+  background: #f7f9fc;
+  color: #617086;
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .payment-next-step {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .verification-report-summary {
+    grid-template-columns: 1fr;
+  }
+}
