@@ -11,6 +11,11 @@ export const metadata = {
   },
   description: 'Regulatory intelligence, product compliance research, preliminary assessment and reporting tools for EU market-entry workflows.',
   applicationName: 'RegMetric',
+  manifest: '/site.webmanifest',
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    shortcut: '/favicon.svg',
+  },
   robots: {
     index: true,
     follow: true,
